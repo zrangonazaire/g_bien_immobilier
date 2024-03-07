@@ -15,71 +15,87 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Padding(
-      padding: EdgeInsets.all(size.height > 770
-          ? 64
-          : size.height > 670
-              ? 32
-              : 16),
-      child: Center(
-        child: Container(
-          height: 300,
-          width: 300,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3))
-              ]),
+    return SizedBox(
+      height: size.height*0.35,
+      width: size.width*0.25,
+      child: Padding(
+        padding:const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+        child: Center(
           child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Connection",
-                    style: TextStyle(fontSize: 18, color: Colors.grey[700]),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 100,
+                  child: Divider(
+                    color: kPrimaryColor,
+                    thickness: 3,
                   ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  SizedBox(
-                    width: 30,
-                    child: Divider(
-                      color: kPrimaryColor,
-                      thickness: 2,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: loginController,
-                    decoration: const InputDecoration(
-                        hintText: "Login",
-                        labelText: "Login",
-                        suffixIcon: Icon(Icons.person)),
-                  ),
-                  TextFormField(
-                      controller: mdpController,
-                      decoration: const InputDecoration(
-                          hintText: "Mot de passe",
-                          labelText: "Mot de passe",
-                          suffixIcon: Icon(Icons.visibility_off))),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  ButtonAction( username: loginController, motdepasse: mdpController, text: "Connecter")
-                ],
-              ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                _usernameFiel(),
+                _passwordFiel(),
+                const SizedBox(
+                  height: 5,
+                ),
+                ButtonAction(
+                    username: loginController,
+                    motdepasse: mdpController,
+                    text: "Connecter")
+              ],
             ),
           ),
         ),
+      ),
+    );
+  }
+late bool visi;
+@override
+  void initState() {
+    visi=true;
+    super.initState();
+  }
+  Widget _passwordFiel() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+      child: TextFormField(
+        controller: mdpController,
+        obscureText: visi,
+        decoration: InputDecoration(
+            border: const UnderlineInputBorder(),
+            icon: const Icon(Icons.security),
+            hintText: "Mot de  passe",
+            suffixIcon: IconButton(
+                onPressed: () {
+                  setState(() {
+                    visi=!visi;
+                  });
+                },
+                icon:  Icon( visi==true?
+                  Icons.visibility_off: Icons.visibility,
+                  size: 20,
+                ))),
+      ),
+    );
+  }
+
+  Widget _usernameFiel() {
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+      child: TextFormField(
+        controller: loginController,
+        decoration: InputDecoration(
+            border: const UnderlineInputBorder(),
+            icon: const Icon(Icons.person),
+            hintText: "Login",
+            suffixIcon: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.close,
+                  size: 20,
+                ))),
       ),
     );
   }

@@ -123,46 +123,6 @@ enum EncaissementReservationDtoEntiteOperation {
   const EncaissementReservationDtoEntiteOperation(this.value);
 }
 
-enum SuivieDepenseModePaiement {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('ESPESE_MAGISER')
-  espeseMagiser('ESPESE_MAGISER'),
-  @JsonValue('ESPECE_SEVEINVEST')
-  especeSeveinvest('ESPECE_SEVEINVEST'),
-  @JsonValue('CHEQUE_ECOBANK_MAGISER')
-  chequeEcobankMagiser('CHEQUE_ECOBANK_MAGISER'),
-  @JsonValue('CHEQUE_GTBANK_SEVEINVEST')
-  chequeGtbankSeveinvest('CHEQUE_GTBANK_SEVEINVEST'),
-  @JsonValue('VIREMENT_ECOBANK_MAGISER')
-  virementEcobankMagiser('VIREMENT_ECOBANK_MAGISER'),
-  @JsonValue('VIREMENT_GTBANK_SEVEINVEST')
-  virementGtbankSeveinvest('VIREMENT_GTBANK_SEVEINVEST'),
-  @JsonValue('MOBILE_MONEY_MAGISER')
-  mobileMoneyMagiser('MOBILE_MONEY_MAGISER'),
-  @JsonValue('MOBILE_MONEY_SEVEINVEST')
-  mobileMoneySeveinvest('MOBILE_MONEY_SEVEINVEST');
-
-  final String? value;
-
-  const SuivieDepenseModePaiement(this.value);
-}
-
-enum SuivieDepenseOperationType {
-  @JsonValue(null)
-  swaggerGeneratedUnknown(null),
-
-  @JsonValue('CREDIT')
-  credit('CREDIT'),
-  @JsonValue('DEBIT')
-  debit('DEBIT');
-
-  final String? value;
-
-  const SuivieDepenseOperationType(this.value);
-}
-
 enum SuivieDepenseDtoModePaiement {
   @JsonValue(null)
   swaggerGeneratedUnknown(null),

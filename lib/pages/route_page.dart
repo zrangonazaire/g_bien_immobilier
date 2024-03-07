@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:g_bien_immobilier/bloc/theme_bloc.dart';
-import 'package:g_bien_immobilier/constants.dart';
 import 'package:g_bien_immobilier/pages/pages.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class RoutePage extends StatelessWidget {
   const RoutePage({super.key});
@@ -19,6 +17,7 @@ class RoutePage extends StatelessWidget {
           "/home": (context) => const HomePage(),
           "/parametre": (context) => const ParametrePage(),
            "/agence": (context) => const AgencePage(),
+           "/locataire": (context) => const LocatairePage(),
         },
         initialRoute: "/",
         

@@ -116,7 +116,8 @@ class _MainDrawerWidgetState extends State<MainDrawerWidget> {
             leading: const Icon(Icons.group,size: 14,),
             title:  Text("Locataires",style: textTheme.labelSmall),
             selected: _selectListView == 9,
-            onTap: () => selectListView(9),
+            onTap: () { selectListView(9);
+            Navigator.of(context).pushNamed('/locataire');},
           ),
             const Divider(
             height: 1,

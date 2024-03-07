@@ -12,15 +12,15 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(providers: [
       BlocProvider(create: (context) => LoginBloc()),
       BlocProvider(create: (context) => ThemeBloc()),
       BlocProvider(create: (context) => AgenceBloc()),
+      BlocProvider(
+        create: (context) => GetAgenceBloc(),
+      )
     ], child: const RoutePage());
   }
 }
-//;

@@ -396,10 +396,9 @@ final class _$Swagger extends Swagger {
       _gestimowebApiV1AppelloyerImpayeParAnneeAnneeIdAgenceChapitreGet({
     required int? annee,
     required int? idAgence,
-    required int? chapitre,
   }) {
     final Uri $url = Uri.parse(
-        'gestimoweb/api/v1/appelloyer/impayeParAnnee/${annee}/${idAgence}/${chapitre}');
+        'gestimoweb/api/v1/appelloyer/impayeParAnnee/${annee}/${idAgence}/{chapitre}');
     final Request $request = Request(
       'GET',
       $url,
@@ -413,10 +412,9 @@ final class _$Swagger extends Swagger {
       _gestimowebApiV1AppelloyerImpayeParMoisPeriodeIdAgenceChapitreGet({
     required String? periode,
     required int? idAgence,
-    required int? chapitre,
   }) {
     final Uri $url = Uri.parse(
-        'gestimoweb/api/v1/appelloyer/impayeParMois/${periode}/${idAgence}/${chapitre}');
+        'gestimoweb/api/v1/appelloyer/impayeParMois/${periode}/${idAgence}/{chapitre}');
     final Request $request = Request(
       'GET',
       $url,
@@ -489,10 +487,9 @@ final class _$Swagger extends Swagger {
       _gestimowebApiV1AppelloyerNombreImpayerLoyerParMoisPeriodeIdAgenceChapitreGet({
     required String? periode,
     required int? idAgence,
-    required int? chapitre,
   }) {
     final Uri $url = Uri.parse(
-        'gestimoweb/api/v1/appelloyer/nombreImpayerLoyerParMois/${periode}/${idAgence}/${chapitre}');
+        'gestimoweb/api/v1/appelloyer/nombreImpayerLoyerParMois/${periode}/${idAgence}/{chapitre}');
     final Request $request = Request(
       'GET',
       $url,
@@ -506,10 +503,9 @@ final class _$Swagger extends Swagger {
       _gestimowebApiV1AppelloyerNombrePayerLoyerParMoisPeriodeIdAgenceChapitreGet({
     required String? periode,
     required int? idAgence,
-    required int? chapitre,
   }) {
     final Uri $url = Uri.parse(
-        'gestimoweb/api/v1/appelloyer/nombrePayerLoyerParMois/${periode}/${idAgence}/${chapitre}');
+        'gestimoweb/api/v1/appelloyer/nombrePayerLoyerParMois/${periode}/${idAgence}/{chapitre}');
     final Request $request = Request(
       'GET',
       $url,
@@ -523,10 +519,9 @@ final class _$Swagger extends Swagger {
       _gestimowebApiV1AppelloyerPayeParAnneeAnneeIdAgenceChapitreGet({
     required int? annee,
     required int? idAgence,
-    required int? chapitre,
   }) {
     final Uri $url = Uri.parse(
-        'gestimoweb/api/v1/appelloyer/payeParAnnee/${annee}/${idAgence}/${chapitre}');
+        'gestimoweb/api/v1/appelloyer/payeParAnnee/${annee}/${idAgence}/{chapitre}');
     final Request $request = Request(
       'GET',
       $url,
@@ -540,10 +535,9 @@ final class _$Swagger extends Swagger {
       _gestimowebApiV1AppelloyerPayeParMoisPeriodeIdAgenceChapitreGet({
     required String? periode,
     required int? idAgence,
-    required int? chapitre,
   }) {
     final Uri $url = Uri.parse(
-        'gestimoweb/api/v1/appelloyer/payeParMois/${periode}/${idAgence}/${chapitre}');
+        'gestimoweb/api/v1/appelloyer/payeParMois/${periode}/${idAgence}/{chapitre}');
     final Request $request = Request(
       'GET',
       $url,
@@ -588,10 +582,9 @@ final class _$Swagger extends Swagger {
       _gestimowebApiV1AppelloyerStaisiqueLoyerParMoisPeriodeIdAgenceChapitreGet({
     required String? periode,
     required int? idAgence,
-    required int? chapitre,
   }) {
     final Uri $url = Uri.parse(
-        'gestimoweb/api/v1/appelloyer/staisiqueLoyerParMois/${periode}/${idAgence}/${chapitre}');
+        'gestimoweb/api/v1/appelloyer/staisiqueLoyerParMois/${periode}/${idAgence}/{chapitre}');
     final Request $request = Request(
       'GET',
       $url,
@@ -605,10 +598,9 @@ final class _$Swagger extends Swagger {
       _gestimowebApiV1AppelloyerStatistiqueLoyerParAnneeAnneeIdAgenceChapitreGet({
     required int? annee,
     required int? idAgence,
-    required int? chapitre,
   }) {
     final Uri $url = Uri.parse(
-        'gestimoweb/api/v1/appelloyer/statistiqueLoyerParAnnee/${annee}/${idAgence}/${chapitre}');
+        'gestimoweb/api/v1/appelloyer/statistiqueLoyerParAnnee/${annee}/${idAgence}/{chapitre}');
     final Request $request = Request(
       'GET',
       $url,
@@ -989,12 +981,10 @@ final class _$Swagger extends Swagger {
 
   @override
   Future<Response<List<BienImmobilierAffiheDto>>>
-      _gestimowebApiV1BienImmobilierAllIdAgenceChapitreGet({
-    required int? idAgence,
-    required int? chapitre,
-  }) {
+      _gestimowebApiV1BienImmobilierAllIdAgenceChapitreGet(
+          {required int? idAgence}) {
     final Uri $url = Uri.parse(
-        'gestimoweb/api/v1/bienImmobilier/all/${idAgence}/${chapitre}');
+        'gestimoweb/api/v1/bienImmobilier/all/${idAgence}/{chapitre}');
     final Request $request = Request(
       'GET',
       $url,
@@ -1006,12 +996,10 @@ final class _$Swagger extends Swagger {
 
   @override
   Future<Response<List<BienImmobilierAffiheDto>>>
-      _gestimowebApiV1BienImmobilierAllBienOccuperIdAgenceChapitreGet({
-    required int? idAgence,
-    required int? chapitre,
-  }) {
+      _gestimowebApiV1BienImmobilierAllBienOccuperIdAgenceChapitreGet(
+          {required int? idAgence}) {
     final Uri $url = Uri.parse(
-        'gestimoweb/api/v1/bienImmobilier/allBienOccuper/${idAgence}/${chapitre}');
+        'gestimoweb/api/v1/bienImmobilier/allBienOccuper/${idAgence}/{chapitre}');
     final Request $request = Request(
       'GET',
       $url,
@@ -1023,12 +1011,10 @@ final class _$Swagger extends Swagger {
 
   @override
   Future<Response<BienImmobilierAffiheDto>>
-      _gestimowebApiV1BienImmobilierRattacherUnBienAUnChapitreIdBienChapitreGet({
-    required int? idBien,
-    required int? chapitre,
-  }) {
+      _gestimowebApiV1BienImmobilierRattacherUnBienAUnChapitreIdBienChapitreGet(
+          {required int? idBien}) {
     final Uri $url = Uri.parse(
-        'gestimoweb/api/v1/bienImmobilier/rattacherUnBienAUnChapitre/${idBien}/${chapitre}');
+        'gestimoweb/api/v1/bienImmobilier/rattacherUnBienAUnChapitre/${idBien}/{chapitre}');
     final Request $request = Request(
       'GET',
       $url,
@@ -1480,12 +1466,11 @@ final class _$Swagger extends Swagger {
   Future<Response<List<EncaissementPrincipalDTO>>>
       _gestimowebApiV1EncaissementListeEncaissementEntreDeuxDateParChapitreEtCaisseIdEncaissIdChapitreDebutFinGet({
     required int? idEncaiss,
-    required int? idChapitre,
     required String? debut,
     required String? fin,
   }) {
     final Uri $url = Uri.parse(
-        'gestimoweb/api/v1/encaissement/listeEncaissementEntreDeuxDateParChapitreEtCaisse/${idEncaiss}/${idChapitre}/${debut}/${fin}');
+        'gestimoweb/api/v1/encaissement/listeEncaissementEntreDeuxDateParChapitreEtCaisse/${idEncaiss}/{idChapitre}/${debut}/${fin}');
     final Request $request = Request(
       'GET',
       $url,
@@ -1640,10 +1625,9 @@ final class _$Swagger extends Swagger {
       _gestimowebApiV1EncaissementTotalencaissementjournalierJourIdAgenceChapitreGet({
     required String? jour,
     required int? idAgence,
-    required int? chapitre,
   }) {
     final Uri $url = Uri.parse(
-        'gestimoweb/api/v1/encaissement/totalencaissementjournalier/${jour}/${idAgence}/${chapitre}');
+        'gestimoweb/api/v1/encaissement/totalencaissementjournalier/${jour}/${idAgence}/{chapitre}');
     final Request $request = Request(
       'GET',
       $url,
@@ -1694,20 +1678,6 @@ final class _$Swagger extends Swagger {
       body: $body,
     );
     return client.send<EspeceEncaissementDto, EspeceEncaissementDto>($request);
-  }
-
-  @override
-  Future<Response<EtablissementUtilisateurDto>>
-      _gestimowebApiV1EtablissementGetDefaultEtableIdGet({required int? id}) {
-    final Uri $url =
-        Uri.parse('gestimoweb/api/v1/etablissement/getDefaultEtable/${id}');
-    final Request $request = Request(
-      'GET',
-      $url,
-      client.baseUrl,
-    );
-    return client.send<EtablissementUtilisateurDto,
-        EtablissementUtilisateurDto>($request);
   }
 
   @override

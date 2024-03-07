@@ -12,6 +12,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc() : super(LoginInitialState()) {
     //  var loginResponse;
     on((UserLoginEvent event, emit) async {
+      emit(LoginLoadingState());
+      //await Future.delayed(const Duration(seconds: 10));
       try {
         final swaggerService = Swagger.create();
         // final authRequestDto =
@@ -24,13 +26,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               String? jwtToken = response.headers['jwt-token'];
               final SharedPreferences sharedPreferences=await SharedPreferences.getInstance();
               await sharedPreferences.setString('token',jwtToken!);
-
               emit(LoginSuccessState(utilisateur: response.body));
-
             } else {
                emit(LoginErrorState(errormessage: "${response.statusCode.toString()} : une erreur est ruvenue "));
             }
-      } catch (e) {
+      } 
+      catch (e) {
        emit(LoginErrorState(errormessage: "$e : une erreur est ruvenue "));
       }
   

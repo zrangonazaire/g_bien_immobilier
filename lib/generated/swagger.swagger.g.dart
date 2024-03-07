@@ -24,9 +24,10 @@ AgenceImmobilierDTO _$AgenceImmobilierDTOFromJson(Map<String, dynamic> json) =>
       idImage: json['idImage'] as int?,
       nameImage: json['nameImage'] as String?,
       typeImage: json['typeImage'] as String?,
-      logoAgence: json['logoAgence'] == null
-          ? null
-          : MultipartFile.fromJson(json['logoAgence'] as Map<String, dynamic>),
+      logoAgence: (json['logoAgence'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
     );
 
 Map<String, dynamic> _$AgenceImmobilierDTOToJson(
@@ -48,7 +49,7 @@ Map<String, dynamic> _$AgenceImmobilierDTOToJson(
       'idImage': instance.idImage,
       'nameImage': instance.nameImage,
       'typeImage': instance.typeImage,
-      'logoAgence': instance.logoAgence?.toJson(),
+      'logoAgence': instance.logoAgence,
     };
 
 AgenceRequestDto _$AgenceRequestDtoFromJson(Map<String, dynamic> json) =>
@@ -57,7 +58,6 @@ AgenceRequestDto _$AgenceRequestDtoFromJson(Map<String, dynamic> json) =>
       idAgence: json['idAgence'] as int?,
       idCreateur: json['idCreateur'] as int?,
       nomAgence: json['nomAgence'] as String?,
-      telAgence: json['telAgence'] as String?,
       compteContribuable: json['compteContribuable'] as String?,
       capital: (json['capital'] as num?)?.toDouble(),
       emailAgence: json['emailAgence'] as String?,
@@ -69,13 +69,15 @@ AgenceRequestDto _$AgenceRequestDtoFromJson(Map<String, dynamic> json) =>
       motdepasse: json['motdepasse'] as String?,
       nomPrenomGerant: json['nomPrenomGerant'] as String?,
       adresseAgence: json['adresseAgence'] as String?,
+      telGerant: json['telGerant'] as String?,
       idImage: json['idImage'] as int?,
       nameImage: json['nameImage'] as String?,
       typeImage: json['typeImage'] as String?,
       profileAgenceUrl: json['profileAgenceUrl'] as String?,
       active: json['active'] as bool?,
-      logoAgence: json['logoAgence'] as String?,
-      idEtable: json['idEtable'] as int?,
+      logoAgence: json['logoAgence'] == null
+          ? null
+          : MultipartFile.fromJson(json['logoAgence'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$AgenceRequestDtoToJson(AgenceRequestDto instance) =>
@@ -84,7 +86,6 @@ Map<String, dynamic> _$AgenceRequestDtoToJson(AgenceRequestDto instance) =>
       'idAgence': instance.idAgence,
       'idCreateur': instance.idCreateur,
       'nomAgence': instance.nomAgence,
-      'telAgence': instance.telAgence,
       'compteContribuable': instance.compteContribuable,
       'capital': instance.capital,
       'emailAgence': instance.emailAgence,
@@ -96,13 +97,13 @@ Map<String, dynamic> _$AgenceRequestDtoToJson(AgenceRequestDto instance) =>
       'motdepasse': instance.motdepasse,
       'nomPrenomGerant': instance.nomPrenomGerant,
       'adresseAgence': instance.adresseAgence,
+      'telGerant': instance.telGerant,
       'idImage': instance.idImage,
       'nameImage': instance.nameImage,
       'typeImage': instance.typeImage,
       'profileAgenceUrl': instance.profileAgenceUrl,
       'active': instance.active,
-      'logoAgence': instance.logoAgence,
-      'idEtable': instance.idEtable,
+      'logoAgence': instance.logoAgence?.toJson(),
     };
 
 AgenceResponseDto _$AgenceResponseDtoFromJson(Map<String, dynamic> json) =>
@@ -110,7 +111,6 @@ AgenceResponseDto _$AgenceResponseDtoFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int?,
       idAgence: json['idAgence'] as int?,
       nomAgence: json['nomAgence'] as String?,
-      telAgence: json['telAgence'] as String?,
       compteContribuable: json['compteContribuable'] as String?,
       capital: (json['capital'] as num?)?.toDouble(),
       emailAgence: json['emailAgence'] as String?,
@@ -124,7 +124,6 @@ Map<String, dynamic> _$AgenceResponseDtoToJson(AgenceResponseDto instance) =>
       'id': instance.id,
       'idAgence': instance.idAgence,
       'nomAgence': instance.nomAgence,
-      'telAgence': instance.telAgence,
       'compteContribuable': instance.compteContribuable,
       'capital': instance.capital,
       'emailAgence': instance.emailAgence,
@@ -164,6 +163,10 @@ AppartementDto _$AppartementDtoFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       superficieBien: (json['superficieBien'] as num?)?.toDouble(),
       bienMeublerResidence: json['bienMeublerResidence'] as bool?,
+      logoAgence: (json['logoAgence'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
       nameCategorie: json['nameCategorie'] as String?,
       priceCategorie: (json['priceCategorie'] as num?)?.toDouble(),
       nbrDiffJourCategorie: json['nbrDiffJourCategorie'] as int?,
@@ -173,7 +176,6 @@ AppartementDto _$AppartementDtoFromJson(Map<String, dynamic> json) =>
           ? null
           : CategoryChambreSaveOrUpdateDto.fromJson(
               json['idCategorieChambre'] as Map<String, dynamic>),
-      idChapitre: json['idChapitre'] as int?,
       occupied: json['occupied'] as bool?,
     );
 
@@ -195,12 +197,12 @@ Map<String, dynamic> _$AppartementDtoToJson(AppartementDto instance) =>
       'description': instance.description,
       'superficieBien': instance.superficieBien,
       'bienMeublerResidence': instance.bienMeublerResidence,
+      'logoAgence': instance.logoAgence,
       'nameCategorie': instance.nameCategorie,
       'priceCategorie': instance.priceCategorie,
       'nbrDiffJourCategorie': instance.nbrDiffJourCategorie,
       'pourcentReducCategorie': instance.pourcentReducCategorie,
       'idCategorieChambre': instance.idCategorieChambre?.toJson(),
-      'idChapitre': instance.idChapitre,
       'occupied': instance.occupied,
     };
 
@@ -856,9 +858,6 @@ Bienimmobilier _$BienimmobilierFromJson(Map<String, dynamic> json) =>
           : Utilisateur.fromJson(
               json['utilisateurProprietaire'] as Map<String, dynamic>),
       nombrePieceBien: json['nombrePieceBien'] as int?,
-      chapitre: json['chapitre'] == null
-          ? null
-          : Chapitre.fromJson(json['chapitre'] as Map<String, dynamic>),
       imageDatas: (json['imageDatas'] as List<dynamic>?)
               ?.map((e) => ImageData.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -884,7 +883,6 @@ Map<String, dynamic> _$BienimmobilierToJson(Bienimmobilier instance) =>
       'bienMeublerResidence': instance.bienMeublerResidence,
       'utilisateurProprietaire': instance.utilisateurProprietaire?.toJson(),
       'nombrePieceBien': instance.nombrePieceBien,
-      'chapitre': instance.chapitre?.toJson(),
       'imageDatas': instance.imageDatas?.map((e) => e.toJson()).toList(),
       'site': instance.site?.toJson(),
       'occupied': instance.occupied,
@@ -915,27 +913,6 @@ Map<String, dynamic> _$CategoryChambreSaveOrUpdateDtoToJson(
       'description': instance.description,
       'prixGategorieDto':
           instance.prixGategorieDto?.map((e) => e.toJson()).toList(),
-    };
-
-Chapitre _$ChapitreFromJson(Map<String, dynamic> json) => Chapitre(
-      id: json['id'] as int?,
-      libelleChapitre: json['libelleChapitre'] as String?,
-      biens: (json['biens'] as List<dynamic>?)
-              ?.map((e) => Bienimmobilier.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-      suivisDepenseChapitre: (json['suivisDepenseChapitre'] as List<dynamic>?)
-              ?.map((e) => SuivieDepense.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
-    );
-
-Map<String, dynamic> _$ChapitreToJson(Chapitre instance) => <String, dynamic>{
-      'id': instance.id,
-      'libelleChapitre': instance.libelleChapitre,
-      'biens': instance.biens?.map((e) => e.toJson()).toList(),
-      'suivisDepenseChapitre':
-          instance.suivisDepenseChapitre?.map((e) => e.toJson()).toList(),
     };
 
 Charges _$ChargesFromJson(Map<String, dynamic> json) => Charges(
@@ -1341,24 +1318,6 @@ Map<String, dynamic> _$EspeceEncaissementDtoToJson(
       'idAppelLoyerEncaissement': instance.idAppelLoyerEncaissement,
     };
 
-EtablissementUtilisateurDto _$EtablissementUtilisateurDtoFromJson(
-        Map<String, dynamic> json) =>
-    EtablissementUtilisateurDto(
-      chapite: json['chapite'] as int?,
-      utilisateur: json['utilisateur'] as int?,
-      defaultChapite: json['defaultChapite'] as bool?,
-      nomEtabless: json['nomEtabless'] as String?,
-    );
-
-Map<String, dynamic> _$EtablissementUtilisateurDtoToJson(
-        EtablissementUtilisateurDto instance) =>
-    <String, dynamic>{
-      'chapite': instance.chapite,
-      'utilisateur': instance.utilisateur,
-      'defaultChapite': instance.defaultChapite,
-      'nomEtabless': instance.nomEtabless,
-    };
-
 EtageAfficheDto _$EtageAfficheDtoFromJson(Map<String, dynamic> json) =>
     EtageAfficheDto(
       id: json['id'] as int?,
@@ -1628,8 +1587,8 @@ MagasinDto _$MagasinDtoFromJson(Map<String, dynamic> json) => MagasinDto(
       proprietaire: json['proprietaire'] as String?,
       idmmeuble: json['idmmeuble'] as int?,
       idChapitre: json['idChapitre'] as int?,
-      occupied: json['occupied'] as bool?,
       underBuildingMagasin: json['underBuildingMagasin'] as bool?,
+      occupied: json['occupied'] as bool?,
     );
 
 Map<String, dynamic> _$MagasinDtoToJson(MagasinDto instance) =>
@@ -1651,8 +1610,8 @@ Map<String, dynamic> _$MagasinDtoToJson(MagasinDto instance) =>
       'proprietaire': instance.proprietaire,
       'idmmeuble': instance.idmmeuble,
       'idChapitre': instance.idChapitre,
-      'occupied': instance.occupied,
       'underBuildingMagasin': instance.underBuildingMagasin,
+      'occupied': instance.occupied,
     };
 
 MagasinResponseDto _$MagasinResponseDtoFromJson(Map<String, dynamic> json) =>
@@ -1669,8 +1628,8 @@ MagasinResponseDto _$MagasinResponseDtoFromJson(Map<String, dynamic> json) =>
       superficieBien: (json['superficieBien'] as num?)?.toDouble(),
       bienMeublerResidence: json['bienMeublerResidence'] as bool?,
       proprietaire: json['proprietaire'] as String?,
-      occupied: json['occupied'] as bool?,
       underBuildingMagasin: json['underBuildingMagasin'] as bool?,
+      occupied: json['occupied'] as bool?,
     );
 
 Map<String, dynamic> _$MagasinResponseDtoToJson(MagasinResponseDto instance) =>
@@ -1687,8 +1646,8 @@ Map<String, dynamic> _$MagasinResponseDtoToJson(MagasinResponseDto instance) =>
       'superficieBien': instance.superficieBien,
       'bienMeublerResidence': instance.bienMeublerResidence,
       'proprietaire': instance.proprietaire,
-      'occupied': instance.occupied,
       'underBuildingMagasin': instance.underBuildingMagasin,
+      'occupied': instance.occupied,
     };
 
 MessageEnvoyerDto _$MessageEnvoyerDtoFromJson(Map<String, dynamic> json) =>
@@ -2450,46 +2409,6 @@ Map<String, dynamic> _$StatistiquePeriodeDtoToJson(
       'periode': instance.periode,
       'periodeFin': instance.periodeFin,
       'totalLoyer': instance.totalLoyer,
-    };
-
-SuivieDepense _$SuivieDepenseFromJson(Map<String, dynamic> json) =>
-    SuivieDepense(
-      id: json['id'] as int?,
-      idAgence: json['idAgence'] as int?,
-      idCreateur: json['idCreateur'] as int?,
-      creationDate: json['creationDate'] as int?,
-      lastModifiedDate: json['lastModifiedDate'] as int?,
-      dateEncaissement: json['dateEncaissement'] == null
-          ? null
-          : DateTime.parse(json['dateEncaissement'] as String),
-      designation: json['designation'] as String?,
-      codeTransaction: json['codeTransaction'] as String?,
-      montantDepense: (json['montantDepense'] as num?)?.toDouble(),
-      modePaiement:
-          suivieDepenseModePaiementNullableFromJson(json['modePaiement']),
-      operationType:
-          suivieDepenseOperationTypeNullableFromJson(json['operationType']),
-      chapitreSuivis: json['chapitreSuivis'] == null
-          ? null
-          : Chapitre.fromJson(json['chapitreSuivis'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$SuivieDepenseToJson(SuivieDepense instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'idAgence': instance.idAgence,
-      'idCreateur': instance.idCreateur,
-      'creationDate': instance.creationDate,
-      'lastModifiedDate': instance.lastModifiedDate,
-      'dateEncaissement': _dateToJson(instance.dateEncaissement),
-      'designation': instance.designation,
-      'codeTransaction': instance.codeTransaction,
-      'montantDepense': instance.montantDepense,
-      'modePaiement':
-          suivieDepenseModePaiementNullableToJson(instance.modePaiement),
-      'operationType':
-          suivieDepenseOperationTypeNullableToJson(instance.operationType),
-      'chapitreSuivis': instance.chapitreSuivis?.toJson(),
     };
 
 SuivieDepenseDto _$SuivieDepenseDtoFromJson(Map<String, dynamic> json) =>

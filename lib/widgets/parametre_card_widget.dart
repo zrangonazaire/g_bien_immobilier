@@ -19,10 +19,8 @@ Widget widget;
         height: height,
         decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(5),
             boxShadow: [
-              BoxShadow(
-    
+              BoxShadow(    
                   color: Colors.grey.withOpacity(0.5),
                   spreadRadius: 5,
                   blurRadius: 7,

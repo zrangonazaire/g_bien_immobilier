@@ -1,6 +1,6 @@
 // ignore_for_file: type=lint
 
-import 'package:chopper_built_value/chopper_built_value.dart';
+import 'package:g_bien_immobilier/authenticator/interseptor.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:collection/collection.dart';
 import 'dart:convert';
@@ -10,7 +10,7 @@ import 'package:chopper/chopper.dart';
 import 'client_mapping.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
-//import 'package:http/http.dart' show MultipartFile;
+import 'package:http/http.dart' show MultipartFile;
 import 'package:chopper/chopper.dart' as chopper;
 import 'swagger.enums.swagger.dart' as enums;
 export 'swagger.enums.swagger.dart';
@@ -40,19 +40,11 @@ abstract class Swagger extends ChopperService {
     final newClient = ChopperClient(
         services: [_$Swagger()],
         converter: chopper.JsonConverter(),
-        interceptors: interceptors ?? [
-          HttpLoggingInterceptor(),
-          (Request request)=>request.copyWith(headers:{
-            'Accept':"application/json",
-            'Content-type':"application/json",
-            //'locale':await Prefs.local,
-            //'Authorization':"Bearer ${await Prefs.accessToken}"
-          })
-        ],
+        interceptors: interceptors ?? [],
         client: httpClient,
         authenticator: authenticator,
         errorConverter: errorConverter,
-        baseUrl: baseUrl ?? Uri.parse('http://localhost:8282/'));
+        baseUrl: baseUrl ?? Uri.parse('http://localhost:8383/'));
     return _$Swagger(newClient);
   }
 
@@ -555,21 +547,18 @@ abstract class Swagger extends ChopperService {
   ///
   ///@param annee
   ///@param idAgence
-  ///@param chapitre
   Future<chopper.Response<num>>
       gestimowebApiV1AppelloyerImpayeParAnneeAnneeIdAgenceChapitreGet({
     required int? annee,
     required int? idAgence,
-    required int? chapitre,
   }) {
     return _gestimowebApiV1AppelloyerImpayeParAnneeAnneeIdAgenceChapitreGet(
-        annee: annee, idAgence: idAgence, chapitre: chapitre);
+        annee: annee, idAgence: idAgence);
   }
 
   ///
   ///@param annee
   ///@param idAgence
-  ///@param chapitre
   @Get(
       path:
           'gestimoweb/api/v1/appelloyer/impayeParAnnee/{annee}/{idAgence}/{chapitre}')
@@ -577,27 +566,23 @@ abstract class Swagger extends ChopperService {
       _gestimowebApiV1AppelloyerImpayeParAnneeAnneeIdAgenceChapitreGet({
     @Path('annee') required int? annee,
     @Path('idAgence') required int? idAgence,
-    @Path('chapitre') required int? chapitre,
   });
 
   ///
   ///@param periode
   ///@param idAgence
-  ///@param chapitre
   Future<chopper.Response<num>>
       gestimowebApiV1AppelloyerImpayeParMoisPeriodeIdAgenceChapitreGet({
     required String? periode,
     required int? idAgence,
-    required int? chapitre,
   }) {
     return _gestimowebApiV1AppelloyerImpayeParMoisPeriodeIdAgenceChapitreGet(
-        periode: periode, idAgence: idAgence, chapitre: chapitre);
+        periode: periode, idAgence: idAgence);
   }
 
   ///
   ///@param periode
   ///@param idAgence
-  ///@param chapitre
   @Get(
       path:
           'gestimoweb/api/v1/appelloyer/impayeParMois/{periode}/{idAgence}/{chapitre}')
@@ -605,7 +590,6 @@ abstract class Swagger extends ChopperService {
       _gestimowebApiV1AppelloyerImpayeParMoisPeriodeIdAgenceChapitreGet({
     @Path('periode') required String? periode,
     @Path('idAgence') required int? idAgence,
-    @Path('chapitre') required int? chapitre,
   });
 
   ///
@@ -692,21 +676,18 @@ abstract class Swagger extends ChopperService {
   ///
   ///@param periode
   ///@param idAgence
-  ///@param chapitre
   Future<chopper.Response<int>>
       gestimowebApiV1AppelloyerNombreImpayerLoyerParMoisPeriodeIdAgenceChapitreGet({
     required String? periode,
     required int? idAgence,
-    required int? chapitre,
   }) {
     return _gestimowebApiV1AppelloyerNombreImpayerLoyerParMoisPeriodeIdAgenceChapitreGet(
-        periode: periode, idAgence: idAgence, chapitre: chapitre);
+        periode: periode, idAgence: idAgence);
   }
 
   ///
   ///@param periode
   ///@param idAgence
-  ///@param chapitre
   @Get(
       path:
           'gestimoweb/api/v1/appelloyer/nombreImpayerLoyerParMois/{periode}/{idAgence}/{chapitre}')
@@ -714,27 +695,23 @@ abstract class Swagger extends ChopperService {
       _gestimowebApiV1AppelloyerNombreImpayerLoyerParMoisPeriodeIdAgenceChapitreGet({
     @Path('periode') required String? periode,
     @Path('idAgence') required int? idAgence,
-    @Path('chapitre') required int? chapitre,
   });
 
   ///
   ///@param periode
   ///@param idAgence
-  ///@param chapitre
   Future<chopper.Response<int>>
       gestimowebApiV1AppelloyerNombrePayerLoyerParMoisPeriodeIdAgenceChapitreGet({
     required String? periode,
     required int? idAgence,
-    required int? chapitre,
   }) {
     return _gestimowebApiV1AppelloyerNombrePayerLoyerParMoisPeriodeIdAgenceChapitreGet(
-        periode: periode, idAgence: idAgence, chapitre: chapitre);
+        periode: periode, idAgence: idAgence);
   }
 
   ///
   ///@param periode
   ///@param idAgence
-  ///@param chapitre
   @Get(
       path:
           'gestimoweb/api/v1/appelloyer/nombrePayerLoyerParMois/{periode}/{idAgence}/{chapitre}')
@@ -742,27 +719,23 @@ abstract class Swagger extends ChopperService {
       _gestimowebApiV1AppelloyerNombrePayerLoyerParMoisPeriodeIdAgenceChapitreGet({
     @Path('periode') required String? periode,
     @Path('idAgence') required int? idAgence,
-    @Path('chapitre') required int? chapitre,
   });
 
   ///
   ///@param annee
   ///@param idAgence
-  ///@param chapitre
   Future<chopper.Response<num>>
       gestimowebApiV1AppelloyerPayeParAnneeAnneeIdAgenceChapitreGet({
     required int? annee,
     required int? idAgence,
-    required int? chapitre,
   }) {
     return _gestimowebApiV1AppelloyerPayeParAnneeAnneeIdAgenceChapitreGet(
-        annee: annee, idAgence: idAgence, chapitre: chapitre);
+        annee: annee, idAgence: idAgence);
   }
 
   ///
   ///@param annee
   ///@param idAgence
-  ///@param chapitre
   @Get(
       path:
           'gestimoweb/api/v1/appelloyer/payeParAnnee/{annee}/{idAgence}/{chapitre}')
@@ -770,27 +743,23 @@ abstract class Swagger extends ChopperService {
       _gestimowebApiV1AppelloyerPayeParAnneeAnneeIdAgenceChapitreGet({
     @Path('annee') required int? annee,
     @Path('idAgence') required int? idAgence,
-    @Path('chapitre') required int? chapitre,
   });
 
   ///
   ///@param periode
   ///@param idAgence
-  ///@param chapitre
   Future<chopper.Response<num>>
       gestimowebApiV1AppelloyerPayeParMoisPeriodeIdAgenceChapitreGet({
     required String? periode,
     required int? idAgence,
-    required int? chapitre,
   }) {
     return _gestimowebApiV1AppelloyerPayeParMoisPeriodeIdAgenceChapitreGet(
-        periode: periode, idAgence: idAgence, chapitre: chapitre);
+        periode: periode, idAgence: idAgence);
   }
 
   ///
   ///@param periode
   ///@param idAgence
-  ///@param chapitre
   @Get(
       path:
           'gestimoweb/api/v1/appelloyer/payeParMois/{periode}/{idAgence}/{chapitre}')
@@ -798,7 +767,6 @@ abstract class Swagger extends ChopperService {
       _gestimowebApiV1AppelloyerPayeParMoisPeriodeIdAgenceChapitreGet({
     @Path('periode') required String? periode,
     @Path('idAgence') required int? idAgence,
-    @Path('chapitre') required int? chapitre,
   });
 
   ///
@@ -840,24 +808,21 @@ abstract class Swagger extends ChopperService {
   ///
   ///@param periode
   ///@param idAgence
-  ///@param chapitre
   Future<chopper.Response<StatistiquePeriodeDto>>
       gestimowebApiV1AppelloyerStaisiqueLoyerParMoisPeriodeIdAgenceChapitreGet({
     required String? periode,
     required int? idAgence,
-    required int? chapitre,
   }) {
     generatedMapping.putIfAbsent(
         StatistiquePeriodeDto, () => StatistiquePeriodeDto.fromJsonFactory);
 
     return _gestimowebApiV1AppelloyerStaisiqueLoyerParMoisPeriodeIdAgenceChapitreGet(
-        periode: periode, idAgence: idAgence, chapitre: chapitre);
+        periode: periode, idAgence: idAgence);
   }
 
   ///
   ///@param periode
   ///@param idAgence
-  ///@param chapitre
   @Get(
       path:
           'gestimoweb/api/v1/appelloyer/staisiqueLoyerParMois/{periode}/{idAgence}/{chapitre}')
@@ -865,30 +830,26 @@ abstract class Swagger extends ChopperService {
       _gestimowebApiV1AppelloyerStaisiqueLoyerParMoisPeriodeIdAgenceChapitreGet({
     @Path('periode') required String? periode,
     @Path('idAgence') required int? idAgence,
-    @Path('chapitre') required int? chapitre,
   });
 
   ///
   ///@param annee
   ///@param idAgence
-  ///@param chapitre
   Future<chopper.Response<StatistiquePeriodeDto>>
       gestimowebApiV1AppelloyerStatistiqueLoyerParAnneeAnneeIdAgenceChapitreGet({
     required int? annee,
     required int? idAgence,
-    required int? chapitre,
   }) {
     generatedMapping.putIfAbsent(
         StatistiquePeriodeDto, () => StatistiquePeriodeDto.fromJsonFactory);
 
     return _gestimowebApiV1AppelloyerStatistiqueLoyerParAnneeAnneeIdAgenceChapitreGet(
-        annee: annee, idAgence: idAgence, chapitre: chapitre);
+        annee: annee, idAgence: idAgence);
   }
 
   ///
   ///@param annee
   ///@param idAgence
-  ///@param chapitre
   @Get(
       path:
           'gestimoweb/api/v1/appelloyer/statistiqueLoyerParAnnee/{annee}/{idAgence}/{chapitre}')
@@ -896,7 +857,6 @@ abstract class Swagger extends ChopperService {
       _gestimowebApiV1AppelloyerStatistiqueLoyerParAnneeAnneeIdAgenceChapitreGet({
     @Path('annee') required int? annee,
     @Path('idAgence') required int? idAgence,
-    @Path('chapitre') required int? chapitre,
   });
 
   ///
@@ -1381,82 +1341,64 @@ abstract class Swagger extends ChopperService {
 
   ///
   ///@param idAgence
-  ///@param chapitre
   Future<chopper.Response<List<BienImmobilierAffiheDto>>>
-      gestimowebApiV1BienImmobilierAllIdAgenceChapitreGet({
-    required int? idAgence,
-    required int? chapitre,
-  }) {
+      gestimowebApiV1BienImmobilierAllIdAgenceChapitreGet(
+          {required int? idAgence}) {
     generatedMapping.putIfAbsent(
         BienImmobilierAffiheDto, () => BienImmobilierAffiheDto.fromJsonFactory);
 
     return _gestimowebApiV1BienImmobilierAllIdAgenceChapitreGet(
-        idAgence: idAgence, chapitre: chapitre);
+        idAgence: idAgence);
   }
 
   ///
   ///@param idAgence
-  ///@param chapitre
   @Get(path: 'gestimoweb/api/v1/bienImmobilier/all/{idAgence}/{chapitre}')
   Future<chopper.Response<List<BienImmobilierAffiheDto>>>
-      _gestimowebApiV1BienImmobilierAllIdAgenceChapitreGet({
-    @Path('idAgence') required int? idAgence,
-    @Path('chapitre') required int? chapitre,
-  });
+      _gestimowebApiV1BienImmobilierAllIdAgenceChapitreGet(
+          {@Path('idAgence') required int? idAgence});
 
   ///
   ///@param idAgence
-  ///@param chapitre
   Future<chopper.Response<List<BienImmobilierAffiheDto>>>
-      gestimowebApiV1BienImmobilierAllBienOccuperIdAgenceChapitreGet({
-    required int? idAgence,
-    required int? chapitre,
-  }) {
+      gestimowebApiV1BienImmobilierAllBienOccuperIdAgenceChapitreGet(
+          {required int? idAgence}) {
     generatedMapping.putIfAbsent(
         BienImmobilierAffiheDto, () => BienImmobilierAffiheDto.fromJsonFactory);
 
     return _gestimowebApiV1BienImmobilierAllBienOccuperIdAgenceChapitreGet(
-        idAgence: idAgence, chapitre: chapitre);
+        idAgence: idAgence);
   }
 
   ///
   ///@param idAgence
-  ///@param chapitre
   @Get(
       path:
           'gestimoweb/api/v1/bienImmobilier/allBienOccuper/{idAgence}/{chapitre}')
   Future<chopper.Response<List<BienImmobilierAffiheDto>>>
-      _gestimowebApiV1BienImmobilierAllBienOccuperIdAgenceChapitreGet({
-    @Path('idAgence') required int? idAgence,
-    @Path('chapitre') required int? chapitre,
-  });
+      _gestimowebApiV1BienImmobilierAllBienOccuperIdAgenceChapitreGet(
+          {@Path('idAgence') required int? idAgence});
 
   ///
   ///@param idBien
-  ///@param chapitre
   Future<chopper.Response<BienImmobilierAffiheDto>>
-      gestimowebApiV1BienImmobilierRattacherUnBienAUnChapitreIdBienChapitreGet({
-    required int? idBien,
-    required int? chapitre,
-  }) {
+      gestimowebApiV1BienImmobilierRattacherUnBienAUnChapitreIdBienChapitreGet(
+          {required int? idBien}) {
     generatedMapping.putIfAbsent(
         BienImmobilierAffiheDto, () => BienImmobilierAffiheDto.fromJsonFactory);
 
     return _gestimowebApiV1BienImmobilierRattacherUnBienAUnChapitreIdBienChapitreGet(
-        idBien: idBien, chapitre: chapitre);
+        idBien: idBien);
   }
 
   ///
   ///@param idBien
-  ///@param chapitre
   @Get(
       path:
           'gestimoweb/api/v1/bienImmobilier/rattacherUnBienAUnChapitre/{idBien}/{chapitre}')
   Future<chopper.Response<BienImmobilierAffiheDto>>
-      _gestimowebApiV1BienImmobilierRattacherUnBienAUnChapitreIdBienChapitreGet({
-    @Path('idBien') required int? idBien,
-    @Path('chapitre') required int? chapitre,
-  });
+      _gestimowebApiV1BienImmobilierRattacherUnBienAUnChapitreIdBienChapitreGet(
+          {@Path('idBien') required int? idBien});
 
   ///
   ///@param idAgence
@@ -2062,13 +2004,11 @@ abstract class Swagger extends ChopperService {
 
   ///
   ///@param idEncaiss
-  ///@param idChapitre
   ///@param debut
   ///@param fin
   Future<chopper.Response<List<EncaissementPrincipalDTO>>>
       gestimowebApiV1EncaissementListeEncaissementEntreDeuxDateParChapitreEtCaisseIdEncaissIdChapitreDebutFinGet({
     required int? idEncaiss,
-    required int? idChapitre,
     required String? debut,
     required String? fin,
   }) {
@@ -2076,12 +2016,11 @@ abstract class Swagger extends ChopperService {
         () => EncaissementPrincipalDTO.fromJsonFactory);
 
     return _gestimowebApiV1EncaissementListeEncaissementEntreDeuxDateParChapitreEtCaisseIdEncaissIdChapitreDebutFinGet(
-        idEncaiss: idEncaiss, idChapitre: idChapitre, debut: debut, fin: fin);
+        idEncaiss: idEncaiss, debut: debut, fin: fin);
   }
 
   ///
   ///@param idEncaiss
-  ///@param idChapitre
   ///@param debut
   ///@param fin
   @Get(
@@ -2090,7 +2029,6 @@ abstract class Swagger extends ChopperService {
   Future<chopper.Response<List<EncaissementPrincipalDTO>>>
       _gestimowebApiV1EncaissementListeEncaissementEntreDeuxDateParChapitreEtCaisseIdEncaissIdChapitreDebutFinGet({
     @Path('idEncaiss') required int? idEncaiss,
-    @Path('idChapitre') required int? idChapitre,
     @Path('debut') required String? debut,
     @Path('fin') required String? fin,
   });
@@ -2288,21 +2226,18 @@ abstract class Swagger extends ChopperService {
   ///
   ///@param jour
   ///@param idAgence
-  ///@param chapitre
   Future<chopper.Response<num>>
       gestimowebApiV1EncaissementTotalencaissementjournalierJourIdAgenceChapitreGet({
     required String? jour,
     required int? idAgence,
-    required int? chapitre,
   }) {
     return _gestimowebApiV1EncaissementTotalencaissementjournalierJourIdAgenceChapitreGet(
-        jour: jour, idAgence: idAgence, chapitre: chapitre);
+        jour: jour, idAgence: idAgence);
   }
 
   ///
   ///@param jour
   ///@param idAgence
-  ///@param chapitre
   @Get(
       path:
           'gestimoweb/api/v1/encaissement/totalencaissementjournalier/{jour}/{idAgence}/{chapitre}')
@@ -2310,7 +2245,6 @@ abstract class Swagger extends ChopperService {
       _gestimowebApiV1EncaissementTotalencaissementjournalierJourIdAgenceChapitreGet({
     @Path('jour') required String? jour,
     @Path('idAgence') required int? idAgence,
-    @Path('chapitre') required int? chapitre,
   });
 
   ///
@@ -2371,23 +2305,6 @@ abstract class Swagger extends ChopperService {
   Future<chopper.Response<EspeceEncaissementDto>>
       _gestimowebApiV1EspeceencaissementSavePost(
           {@Body() EspeceEncaissementDto? body});
-
-  ///
-  ///@param id
-  Future<chopper.Response<EtablissementUtilisateurDto>>
-      gestimowebApiV1EtablissementGetDefaultEtableIdGet({required int? id}) {
-    generatedMapping.putIfAbsent(EtablissementUtilisateurDto,
-        () => EtablissementUtilisateurDto.fromJsonFactory);
-
-    return _gestimowebApiV1EtablissementGetDefaultEtableIdGet(id: id);
-  }
-
-  ///
-  ///@param id
-  @Get(path: 'gestimoweb/api/v1/etablissement/getDefaultEtable/{id}')
-  Future<chopper.Response<EtablissementUtilisateurDto>>
-      _gestimowebApiV1EtablissementGetDefaultEtableIdGet(
-          {@Path('id') required int? id});
 
   ///
   ///@param idAgence
@@ -4295,8 +4212,8 @@ class AgenceImmobilierDTO {
   final String? nameImage;
   @JsonKey(name: 'typeImage')
   final String? typeImage;
-  @JsonKey(name: 'logoAgence')
-  final MultipartFile? logoAgence;
+  @JsonKey(name: 'logoAgence', defaultValue: <String>[])
+  final List<String>? logoAgence;
   static const fromJsonFactory = _$AgenceImmobilierDTOFromJson;
 
   @override
@@ -4398,7 +4315,7 @@ extension $AgenceImmobilierDTOExtension on AgenceImmobilierDTO {
       int? idImage,
       String? nameImage,
       String? typeImage,
-      MultipartFile? logoAgence}) {
+      List<String>? logoAgence}) {
     return AgenceImmobilierDTO(
         id: id ?? this.id,
         nomAgence: nomAgence ?? this.nomAgence,
@@ -4436,7 +4353,7 @@ extension $AgenceImmobilierDTOExtension on AgenceImmobilierDTO {
       Wrapped<int?>? idImage,
       Wrapped<String?>? nameImage,
       Wrapped<String?>? typeImage,
-      Wrapped<MultipartFile?>? logoAgence}) {
+      Wrapped<List<String>?>? logoAgence}) {
     return AgenceImmobilierDTO(
         id: (id != null ? id.value : this.id),
         nomAgence: (nomAgence != null ? nomAgence.value : this.nomAgence),
@@ -4475,7 +4392,6 @@ class AgenceRequestDto {
     this.idAgence,
     this.idCreateur,
     this.nomAgence,
-    this.telAgence,
     this.compteContribuable,
     this.capital,
     this.emailAgence,
@@ -4487,13 +4403,13 @@ class AgenceRequestDto {
     this.motdepasse,
     this.nomPrenomGerant,
     this.adresseAgence,
+    this.telGerant,
     this.idImage,
     this.nameImage,
     this.typeImage,
     this.profileAgenceUrl,
     this.active,
     this.logoAgence,
-    this.idEtable,
   });
 
   factory AgenceRequestDto.fromJson(Map<String, dynamic> json) =>
@@ -4510,8 +4426,6 @@ class AgenceRequestDto {
   final int? idCreateur;
   @JsonKey(name: 'nomAgence')
   final String? nomAgence;
-  @JsonKey(name: 'telAgence')
-  final String? telAgence;
   @JsonKey(name: 'compteContribuable')
   final String? compteContribuable;
   @JsonKey(name: 'capital')
@@ -4534,6 +4448,8 @@ class AgenceRequestDto {
   final String? nomPrenomGerant;
   @JsonKey(name: 'adresseAgence')
   final String? adresseAgence;
+  @JsonKey(name: 'telGerant')
+  final String? telGerant;
   @JsonKey(name: 'idImage')
   final int? idImage;
   @JsonKey(name: 'nameImage')
@@ -4545,9 +4461,7 @@ class AgenceRequestDto {
   @JsonKey(name: 'active')
   final bool? active;
   @JsonKey(name: 'logoAgence')
-  final String? logoAgence;
-  @JsonKey(name: 'idEtable')
-  final int? idEtable;
+  final MultipartFile? logoAgence;
   static const fromJsonFactory = _$AgenceRequestDtoFromJson;
 
   @override
@@ -4565,9 +4479,6 @@ class AgenceRequestDto {
             (identical(other.nomAgence, nomAgence) ||
                 const DeepCollectionEquality()
                     .equals(other.nomAgence, nomAgence)) &&
-            (identical(other.telAgence, telAgence) ||
-                const DeepCollectionEquality()
-                    .equals(other.telAgence, telAgence)) &&
             (identical(other.compteContribuable, compteContribuable) ||
                 const DeepCollectionEquality()
                     .equals(other.compteContribuable, compteContribuable)) &&
@@ -4601,6 +4512,9 @@ class AgenceRequestDto {
             (identical(other.adresseAgence, adresseAgence) ||
                 const DeepCollectionEquality()
                     .equals(other.adresseAgence, adresseAgence)) &&
+            (identical(other.telGerant, telGerant) ||
+                const DeepCollectionEquality()
+                    .equals(other.telGerant, telGerant)) &&
             (identical(other.idImage, idImage) ||
                 const DeepCollectionEquality()
                     .equals(other.idImage, idImage)) &&
@@ -4617,9 +4531,7 @@ class AgenceRequestDto {
                 const DeepCollectionEquality().equals(other.active, active)) &&
             (identical(other.logoAgence, logoAgence) ||
                 const DeepCollectionEquality()
-                    .equals(other.logoAgence, logoAgence)) &&
-            (identical(other.idEtable, idEtable) ||
-                const DeepCollectionEquality().equals(other.idEtable, idEtable)));
+                    .equals(other.logoAgence, logoAgence)));
   }
 
   @override
@@ -4631,7 +4543,6 @@ class AgenceRequestDto {
       const DeepCollectionEquality().hash(idAgence) ^
       const DeepCollectionEquality().hash(idCreateur) ^
       const DeepCollectionEquality().hash(nomAgence) ^
-      const DeepCollectionEquality().hash(telAgence) ^
       const DeepCollectionEquality().hash(compteContribuable) ^
       const DeepCollectionEquality().hash(capital) ^
       const DeepCollectionEquality().hash(emailAgence) ^
@@ -4643,13 +4554,13 @@ class AgenceRequestDto {
       const DeepCollectionEquality().hash(motdepasse) ^
       const DeepCollectionEquality().hash(nomPrenomGerant) ^
       const DeepCollectionEquality().hash(adresseAgence) ^
+      const DeepCollectionEquality().hash(telGerant) ^
       const DeepCollectionEquality().hash(idImage) ^
       const DeepCollectionEquality().hash(nameImage) ^
       const DeepCollectionEquality().hash(typeImage) ^
       const DeepCollectionEquality().hash(profileAgenceUrl) ^
       const DeepCollectionEquality().hash(active) ^
       const DeepCollectionEquality().hash(logoAgence) ^
-      const DeepCollectionEquality().hash(idEtable) ^
       runtimeType.hashCode;
 }
 
@@ -4659,7 +4570,6 @@ extension $AgenceRequestDtoExtension on AgenceRequestDto {
       int? idAgence,
       int? idCreateur,
       String? nomAgence,
-      String? telAgence,
       String? compteContribuable,
       double? capital,
       String? emailAgence,
@@ -4671,19 +4581,18 @@ extension $AgenceRequestDtoExtension on AgenceRequestDto {
       String? motdepasse,
       String? nomPrenomGerant,
       String? adresseAgence,
+      String? telGerant,
       int? idImage,
       String? nameImage,
       String? typeImage,
       String? profileAgenceUrl,
       bool? active,
-      String? logoAgence,
-      int? idEtable}) {
+      MultipartFile? logoAgence}) {
     return AgenceRequestDto(
         id: id ?? this.id,
         idAgence: idAgence ?? this.idAgence,
         idCreateur: idCreateur ?? this.idCreateur,
         nomAgence: nomAgence ?? this.nomAgence,
-        telAgence: telAgence ?? this.telAgence,
         compteContribuable: compteContribuable ?? this.compteContribuable,
         capital: capital ?? this.capital,
         emailAgence: emailAgence ?? this.emailAgence,
@@ -4696,13 +4605,13 @@ extension $AgenceRequestDtoExtension on AgenceRequestDto {
         motdepasse: motdepasse ?? this.motdepasse,
         nomPrenomGerant: nomPrenomGerant ?? this.nomPrenomGerant,
         adresseAgence: adresseAgence ?? this.adresseAgence,
+        telGerant: telGerant ?? this.telGerant,
         idImage: idImage ?? this.idImage,
         nameImage: nameImage ?? this.nameImage,
         typeImage: typeImage ?? this.typeImage,
         profileAgenceUrl: profileAgenceUrl ?? this.profileAgenceUrl,
         active: active ?? this.active,
-        logoAgence: logoAgence ?? this.logoAgence,
-        idEtable: idEtable ?? this.idEtable);
+        logoAgence: logoAgence ?? this.logoAgence);
   }
 
   AgenceRequestDto copyWithWrapped(
@@ -4710,7 +4619,6 @@ extension $AgenceRequestDtoExtension on AgenceRequestDto {
       Wrapped<int?>? idAgence,
       Wrapped<int?>? idCreateur,
       Wrapped<String?>? nomAgence,
-      Wrapped<String?>? telAgence,
       Wrapped<String?>? compteContribuable,
       Wrapped<double?>? capital,
       Wrapped<String?>? emailAgence,
@@ -4722,19 +4630,18 @@ extension $AgenceRequestDtoExtension on AgenceRequestDto {
       Wrapped<String?>? motdepasse,
       Wrapped<String?>? nomPrenomGerant,
       Wrapped<String?>? adresseAgence,
+      Wrapped<String?>? telGerant,
       Wrapped<int?>? idImage,
       Wrapped<String?>? nameImage,
       Wrapped<String?>? typeImage,
       Wrapped<String?>? profileAgenceUrl,
       Wrapped<bool?>? active,
-      Wrapped<String?>? logoAgence,
-      Wrapped<int?>? idEtable}) {
+      Wrapped<MultipartFile?>? logoAgence}) {
     return AgenceRequestDto(
         id: (id != null ? id.value : this.id),
         idAgence: (idAgence != null ? idAgence.value : this.idAgence),
         idCreateur: (idCreateur != null ? idCreateur.value : this.idCreateur),
         nomAgence: (nomAgence != null ? nomAgence.value : this.nomAgence),
-        telAgence: (telAgence != null ? telAgence.value : this.telAgence),
         compteContribuable: (compteContribuable != null
             ? compteContribuable.value
             : this.compteContribuable),
@@ -4758,6 +4665,7 @@ extension $AgenceRequestDtoExtension on AgenceRequestDto {
             : this.nomPrenomGerant),
         adresseAgence:
             (adresseAgence != null ? adresseAgence.value : this.adresseAgence),
+        telGerant: (telGerant != null ? telGerant.value : this.telGerant),
         idImage: (idImage != null ? idImage.value : this.idImage),
         nameImage: (nameImage != null ? nameImage.value : this.nameImage),
         typeImage: (typeImage != null ? typeImage.value : this.typeImage),
@@ -4765,8 +4673,7 @@ extension $AgenceRequestDtoExtension on AgenceRequestDto {
             ? profileAgenceUrl.value
             : this.profileAgenceUrl),
         active: (active != null ? active.value : this.active),
-        logoAgence: (logoAgence != null ? logoAgence.value : this.logoAgence),
-        idEtable: (idEtable != null ? idEtable.value : this.idEtable));
+        logoAgence: (logoAgence != null ? logoAgence.value : this.logoAgence));
   }
 }
 
@@ -4776,7 +4683,6 @@ class AgenceResponseDto {
     this.id,
     this.idAgence,
     this.nomAgence,
-    this.telAgence,
     this.compteContribuable,
     this.capital,
     this.emailAgence,
@@ -4797,8 +4703,6 @@ class AgenceResponseDto {
   final int? idAgence;
   @JsonKey(name: 'nomAgence')
   final String? nomAgence;
-  @JsonKey(name: 'telAgence')
-  final String? telAgence;
   @JsonKey(name: 'compteContribuable')
   final String? compteContribuable;
   @JsonKey(name: 'capital')
@@ -4825,9 +4729,6 @@ class AgenceResponseDto {
             (identical(other.nomAgence, nomAgence) ||
                 const DeepCollectionEquality()
                     .equals(other.nomAgence, nomAgence)) &&
-            (identical(other.telAgence, telAgence) ||
-                const DeepCollectionEquality()
-                    .equals(other.telAgence, telAgence)) &&
             (identical(other.compteContribuable, compteContribuable) ||
                 const DeepCollectionEquality()
                     .equals(other.compteContribuable, compteContribuable)) &&
@@ -4856,7 +4757,6 @@ class AgenceResponseDto {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(idAgence) ^
       const DeepCollectionEquality().hash(nomAgence) ^
-      const DeepCollectionEquality().hash(telAgence) ^
       const DeepCollectionEquality().hash(compteContribuable) ^
       const DeepCollectionEquality().hash(capital) ^
       const DeepCollectionEquality().hash(emailAgence) ^
@@ -4871,7 +4771,6 @@ extension $AgenceResponseDtoExtension on AgenceResponseDto {
       {int? id,
       int? idAgence,
       String? nomAgence,
-      String? telAgence,
       String? compteContribuable,
       double? capital,
       String? emailAgence,
@@ -4882,7 +4781,6 @@ extension $AgenceResponseDtoExtension on AgenceResponseDto {
         id: id ?? this.id,
         idAgence: idAgence ?? this.idAgence,
         nomAgence: nomAgence ?? this.nomAgence,
-        telAgence: telAgence ?? this.telAgence,
         compteContribuable: compteContribuable ?? this.compteContribuable,
         capital: capital ?? this.capital,
         emailAgence: emailAgence ?? this.emailAgence,
@@ -4895,7 +4793,6 @@ extension $AgenceResponseDtoExtension on AgenceResponseDto {
       {Wrapped<int?>? id,
       Wrapped<int?>? idAgence,
       Wrapped<String?>? nomAgence,
-      Wrapped<String?>? telAgence,
       Wrapped<String?>? compteContribuable,
       Wrapped<double?>? capital,
       Wrapped<String?>? emailAgence,
@@ -4906,7 +4803,6 @@ extension $AgenceResponseDtoExtension on AgenceResponseDto {
         id: (id != null ? id.value : this.id),
         idAgence: (idAgence != null ? idAgence.value : this.idAgence),
         nomAgence: (nomAgence != null ? nomAgence.value : this.nomAgence),
-        telAgence: (telAgence != null ? telAgence.value : this.telAgence),
         compteContribuable: (compteContribuable != null
             ? compteContribuable.value
             : this.compteContribuable),
@@ -5001,12 +4897,12 @@ class AppartementDto {
     this.description,
     this.superficieBien,
     this.bienMeublerResidence,
+    this.logoAgence,
     this.nameCategorie,
     this.priceCategorie,
     this.nbrDiffJourCategorie,
     this.pourcentReducCategorie,
     this.idCategorieChambre,
-    this.idChapitre,
     this.occupied,
   });
 
@@ -5048,6 +4944,8 @@ class AppartementDto {
   final double? superficieBien;
   @JsonKey(name: 'bienMeublerResidence')
   final bool? bienMeublerResidence;
+  @JsonKey(name: 'logoAgence', defaultValue: <String>[])
+  final List<String>? logoAgence;
   @JsonKey(name: 'nameCategorie')
   final String? nameCategorie;
   @JsonKey(name: 'priceCategorie')
@@ -5058,8 +4956,6 @@ class AppartementDto {
   final double? pourcentReducCategorie;
   @JsonKey(name: 'idCategorieChambre')
   final CategoryChambreSaveOrUpdateDto? idCategorieChambre;
-  @JsonKey(name: 'idChapitre')
-  final int? idChapitre;
   @JsonKey(name: 'occupied')
   final bool? occupied;
   static const fromJsonFactory = _$AppartementDtoFromJson;
@@ -5116,17 +5012,17 @@ class AppartementDto {
             (identical(other.bienMeublerResidence, bienMeublerResidence) ||
                 const DeepCollectionEquality().equals(
                     other.bienMeublerResidence, bienMeublerResidence)) &&
+            (identical(other.logoAgence, logoAgence) ||
+                const DeepCollectionEquality()
+                    .equals(other.logoAgence, logoAgence)) &&
             (identical(other.nameCategorie, nameCategorie) ||
                 const DeepCollectionEquality()
                     .equals(other.nameCategorie, nameCategorie)) &&
             (identical(other.priceCategorie, priceCategorie) ||
-                const DeepCollectionEquality()
-                    .equals(other.priceCategorie, priceCategorie)) &&
-            (identical(other.nbrDiffJourCategorie, nbrDiffJourCategorie) ||
-                const DeepCollectionEquality().equals(other.nbrDiffJourCategorie, nbrDiffJourCategorie)) &&
+                const DeepCollectionEquality().equals(other.priceCategorie, priceCategorie)) &&
+            (identical(other.nbrDiffJourCategorie, nbrDiffJourCategorie) || const DeepCollectionEquality().equals(other.nbrDiffJourCategorie, nbrDiffJourCategorie)) &&
             (identical(other.pourcentReducCategorie, pourcentReducCategorie) || const DeepCollectionEquality().equals(other.pourcentReducCategorie, pourcentReducCategorie)) &&
             (identical(other.idCategorieChambre, idCategorieChambre) || const DeepCollectionEquality().equals(other.idCategorieChambre, idCategorieChambre)) &&
-            (identical(other.idChapitre, idChapitre) || const DeepCollectionEquality().equals(other.idChapitre, idChapitre)) &&
             (identical(other.occupied, occupied) || const DeepCollectionEquality().equals(other.occupied, occupied)));
   }
 
@@ -5151,12 +5047,12 @@ class AppartementDto {
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(superficieBien) ^
       const DeepCollectionEquality().hash(bienMeublerResidence) ^
+      const DeepCollectionEquality().hash(logoAgence) ^
       const DeepCollectionEquality().hash(nameCategorie) ^
       const DeepCollectionEquality().hash(priceCategorie) ^
       const DeepCollectionEquality().hash(nbrDiffJourCategorie) ^
       const DeepCollectionEquality().hash(pourcentReducCategorie) ^
       const DeepCollectionEquality().hash(idCategorieChambre) ^
-      const DeepCollectionEquality().hash(idChapitre) ^
       const DeepCollectionEquality().hash(occupied) ^
       runtimeType.hashCode;
 }
@@ -5179,12 +5075,12 @@ extension $AppartementDtoExtension on AppartementDto {
       String? description,
       double? superficieBien,
       bool? bienMeublerResidence,
+      List<String>? logoAgence,
       String? nameCategorie,
       double? priceCategorie,
       int? nbrDiffJourCategorie,
       double? pourcentReducCategorie,
       CategoryChambreSaveOrUpdateDto? idCategorieChambre,
-      int? idChapitre,
       bool? occupied}) {
     return AppartementDto(
         id: id ?? this.id,
@@ -5206,13 +5102,13 @@ extension $AppartementDtoExtension on AppartementDto {
         description: description ?? this.description,
         superficieBien: superficieBien ?? this.superficieBien,
         bienMeublerResidence: bienMeublerResidence ?? this.bienMeublerResidence,
+        logoAgence: logoAgence ?? this.logoAgence,
         nameCategorie: nameCategorie ?? this.nameCategorie,
         priceCategorie: priceCategorie ?? this.priceCategorie,
         nbrDiffJourCategorie: nbrDiffJourCategorie ?? this.nbrDiffJourCategorie,
         pourcentReducCategorie:
             pourcentReducCategorie ?? this.pourcentReducCategorie,
         idCategorieChambre: idCategorieChambre ?? this.idCategorieChambre,
-        idChapitre: idChapitre ?? this.idChapitre,
         occupied: occupied ?? this.occupied);
   }
 
@@ -5233,12 +5129,12 @@ extension $AppartementDtoExtension on AppartementDto {
       Wrapped<String?>? description,
       Wrapped<double?>? superficieBien,
       Wrapped<bool?>? bienMeublerResidence,
+      Wrapped<List<String>?>? logoAgence,
       Wrapped<String?>? nameCategorie,
       Wrapped<double?>? priceCategorie,
       Wrapped<int?>? nbrDiffJourCategorie,
       Wrapped<double?>? pourcentReducCategorie,
       Wrapped<CategoryChambreSaveOrUpdateDto?>? idCategorieChambre,
-      Wrapped<int?>? idChapitre,
       Wrapped<bool?>? occupied}) {
     return AppartementDto(
         id: (id != null ? id.value : this.id),
@@ -5278,6 +5174,7 @@ extension $AppartementDtoExtension on AppartementDto {
         bienMeublerResidence: (bienMeublerResidence != null
             ? bienMeublerResidence.value
             : this.bienMeublerResidence),
+        logoAgence: (logoAgence != null ? logoAgence.value : this.logoAgence),
         nameCategorie:
             (nameCategorie != null ? nameCategorie.value : this.nameCategorie),
         priceCategorie: (priceCategorie != null
@@ -5292,7 +5189,6 @@ extension $AppartementDtoExtension on AppartementDto {
         idCategorieChambre: (idCategorieChambre != null
             ? idCategorieChambre.value
             : this.idCategorieChambre),
-        idChapitre: (idChapitre != null ? idChapitre.value : this.idChapitre),
         occupied: (occupied != null ? occupied.value : this.occupied));
   }
 }
@@ -8404,7 +8300,6 @@ class Bienimmobilier {
     this.bienMeublerResidence,
     this.utilisateurProprietaire,
     this.nombrePieceBien,
-    this.chapitre,
     this.imageDatas,
     this.site,
     this.occupied,
@@ -8442,8 +8337,6 @@ class Bienimmobilier {
   final Utilisateur? utilisateurProprietaire;
   @JsonKey(name: 'nombrePieceBien')
   final int? nombrePieceBien;
-  @JsonKey(name: 'chapitre')
-  final Chapitre? chapitre;
   @JsonKey(name: 'imageDatas', defaultValue: <ImageData>[])
   final List<ImageData>? imageDatas;
   @JsonKey(name: 'site')
@@ -8496,14 +8389,13 @@ class Bienimmobilier {
             (identical(other.nombrePieceBien, nombrePieceBien) ||
                 const DeepCollectionEquality()
                     .equals(other.nombrePieceBien, nombrePieceBien)) &&
-            (identical(other.chapitre, chapitre) ||
-                const DeepCollectionEquality()
-                    .equals(other.chapitre, chapitre)) &&
             (identical(other.imageDatas, imageDatas) ||
                 const DeepCollectionEquality()
                     .equals(other.imageDatas, imageDatas)) &&
-            (identical(other.site, site) || const DeepCollectionEquality().equals(other.site, site)) &&
-            (identical(other.occupied, occupied) || const DeepCollectionEquality().equals(other.occupied, occupied)));
+            (identical(other.site, site) ||
+                const DeepCollectionEquality().equals(other.site, site)) &&
+            (identical(other.occupied, occupied) ||
+                const DeepCollectionEquality().equals(other.occupied, occupied)));
   }
 
   @override
@@ -8524,7 +8416,6 @@ class Bienimmobilier {
       const DeepCollectionEquality().hash(bienMeublerResidence) ^
       const DeepCollectionEquality().hash(utilisateurProprietaire) ^
       const DeepCollectionEquality().hash(nombrePieceBien) ^
-      const DeepCollectionEquality().hash(chapitre) ^
       const DeepCollectionEquality().hash(imageDatas) ^
       const DeepCollectionEquality().hash(site) ^
       const DeepCollectionEquality().hash(occupied) ^
@@ -8546,7 +8437,6 @@ extension $BienimmobilierExtension on Bienimmobilier {
       bool? bienMeublerResidence,
       Utilisateur? utilisateurProprietaire,
       int? nombrePieceBien,
-      Chapitre? chapitre,
       List<ImageData>? imageDatas,
       Site? site,
       bool? occupied}) {
@@ -8568,7 +8458,6 @@ extension $BienimmobilierExtension on Bienimmobilier {
         utilisateurProprietaire:
             utilisateurProprietaire ?? this.utilisateurProprietaire,
         nombrePieceBien: nombrePieceBien ?? this.nombrePieceBien,
-        chapitre: chapitre ?? this.chapitre,
         imageDatas: imageDatas ?? this.imageDatas,
         site: site ?? this.site,
         occupied: occupied ?? this.occupied);
@@ -8588,7 +8477,6 @@ extension $BienimmobilierExtension on Bienimmobilier {
       Wrapped<bool?>? bienMeublerResidence,
       Wrapped<Utilisateur?>? utilisateurProprietaire,
       Wrapped<int?>? nombrePieceBien,
-      Wrapped<Chapitre?>? chapitre,
       Wrapped<List<ImageData>?>? imageDatas,
       Wrapped<Site?>? site,
       Wrapped<bool?>? occupied}) {
@@ -8624,7 +8512,6 @@ extension $BienimmobilierExtension on Bienimmobilier {
         nombrePieceBien: (nombrePieceBien != null
             ? nombrePieceBien.value
             : this.nombrePieceBien),
-        chapitre: (chapitre != null ? chapitre.value : this.chapitre),
         imageDatas: (imageDatas != null ? imageDatas.value : this.imageDatas),
         site: (site != null ? site.value : this.site),
         occupied: (occupied != null ? occupied.value : this.occupied));
@@ -8734,90 +8621,6 @@ extension $CategoryChambreSaveOrUpdateDtoExtension
         prixGategorieDto: (prixGategorieDto != null
             ? prixGategorieDto.value
             : this.prixGategorieDto));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
-class Chapitre {
-  const Chapitre({
-    this.id,
-    this.libelleChapitre,
-    this.biens,
-    this.suivisDepenseChapitre,
-  });
-
-  factory Chapitre.fromJson(Map<String, dynamic> json) =>
-      _$ChapitreFromJson(json);
-
-  static const toJsonFactory = _$ChapitreToJson;
-  Map<String, dynamic> toJson() => _$ChapitreToJson(this);
-
-  @JsonKey(name: 'id')
-  final int? id;
-  @JsonKey(name: 'libelleChapitre')
-  final String? libelleChapitre;
-  @JsonKey(name: 'biens', defaultValue: <Bienimmobilier>[])
-  final List<Bienimmobilier>? biens;
-  @JsonKey(name: 'suivisDepenseChapitre', defaultValue: <SuivieDepense>[])
-  final List<SuivieDepense>? suivisDepenseChapitre;
-  static const fromJsonFactory = _$ChapitreFromJson;
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is Chapitre &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.libelleChapitre, libelleChapitre) ||
-                const DeepCollectionEquality()
-                    .equals(other.libelleChapitre, libelleChapitre)) &&
-            (identical(other.biens, biens) ||
-                const DeepCollectionEquality().equals(other.biens, biens)) &&
-            (identical(other.suivisDepenseChapitre, suivisDepenseChapitre) ||
-                const DeepCollectionEquality().equals(
-                    other.suivisDepenseChapitre, suivisDepenseChapitre)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(libelleChapitre) ^
-      const DeepCollectionEquality().hash(biens) ^
-      const DeepCollectionEquality().hash(suivisDepenseChapitre) ^
-      runtimeType.hashCode;
-}
-
-extension $ChapitreExtension on Chapitre {
-  Chapitre copyWith(
-      {int? id,
-      String? libelleChapitre,
-      List<Bienimmobilier>? biens,
-      List<SuivieDepense>? suivisDepenseChapitre}) {
-    return Chapitre(
-        id: id ?? this.id,
-        libelleChapitre: libelleChapitre ?? this.libelleChapitre,
-        biens: biens ?? this.biens,
-        suivisDepenseChapitre:
-            suivisDepenseChapitre ?? this.suivisDepenseChapitre);
-  }
-
-  Chapitre copyWithWrapped(
-      {Wrapped<int?>? id,
-      Wrapped<String?>? libelleChapitre,
-      Wrapped<List<Bienimmobilier>?>? biens,
-      Wrapped<List<SuivieDepense>?>? suivisDepenseChapitre}) {
-    return Chapitre(
-        id: (id != null ? id.value : this.id),
-        libelleChapitre: (libelleChapitre != null
-            ? libelleChapitre.value
-            : this.libelleChapitre),
-        biens: (biens != null ? biens.value : this.biens),
-        suivisDepenseChapitre: (suivisDepenseChapitre != null
-            ? suivisDepenseChapitre.value
-            : this.suivisDepenseChapitre));
   }
 }
 
@@ -10707,91 +10510,6 @@ extension $EspeceEncaissementDtoExtension on EspeceEncaissementDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class EtablissementUtilisateurDto {
-  const EtablissementUtilisateurDto({
-    this.chapite,
-    this.utilisateur,
-    this.defaultChapite,
-    this.nomEtabless,
-  });
-
-  factory EtablissementUtilisateurDto.fromJson(Map<String, dynamic> json) =>
-      _$EtablissementUtilisateurDtoFromJson(json);
-
-  static const toJsonFactory = _$EtablissementUtilisateurDtoToJson;
-  Map<String, dynamic> toJson() => _$EtablissementUtilisateurDtoToJson(this);
-
-  @JsonKey(name: 'chapite')
-  final int? chapite;
-  @JsonKey(name: 'utilisateur')
-  final int? utilisateur;
-  @JsonKey(name: 'defaultChapite')
-  final bool? defaultChapite;
-  @JsonKey(name: 'nomEtabless')
-  final String? nomEtabless;
-  static const fromJsonFactory = _$EtablissementUtilisateurDtoFromJson;
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is EtablissementUtilisateurDto &&
-            (identical(other.chapite, chapite) ||
-                const DeepCollectionEquality()
-                    .equals(other.chapite, chapite)) &&
-            (identical(other.utilisateur, utilisateur) ||
-                const DeepCollectionEquality()
-                    .equals(other.utilisateur, utilisateur)) &&
-            (identical(other.defaultChapite, defaultChapite) ||
-                const DeepCollectionEquality()
-                    .equals(other.defaultChapite, defaultChapite)) &&
-            (identical(other.nomEtabless, nomEtabless) ||
-                const DeepCollectionEquality()
-                    .equals(other.nomEtabless, nomEtabless)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(chapite) ^
-      const DeepCollectionEquality().hash(utilisateur) ^
-      const DeepCollectionEquality().hash(defaultChapite) ^
-      const DeepCollectionEquality().hash(nomEtabless) ^
-      runtimeType.hashCode;
-}
-
-extension $EtablissementUtilisateurDtoExtension on EtablissementUtilisateurDto {
-  EtablissementUtilisateurDto copyWith(
-      {int? chapite,
-      int? utilisateur,
-      bool? defaultChapite,
-      String? nomEtabless}) {
-    return EtablissementUtilisateurDto(
-        chapite: chapite ?? this.chapite,
-        utilisateur: utilisateur ?? this.utilisateur,
-        defaultChapite: defaultChapite ?? this.defaultChapite,
-        nomEtabless: nomEtabless ?? this.nomEtabless);
-  }
-
-  EtablissementUtilisateurDto copyWithWrapped(
-      {Wrapped<int?>? chapite,
-      Wrapped<int?>? utilisateur,
-      Wrapped<bool?>? defaultChapite,
-      Wrapped<String?>? nomEtabless}) {
-    return EtablissementUtilisateurDto(
-        chapite: (chapite != null ? chapite.value : this.chapite),
-        utilisateur:
-            (utilisateur != null ? utilisateur.value : this.utilisateur),
-        defaultChapite: (defaultChapite != null
-            ? defaultChapite.value
-            : this.defaultChapite),
-        nomEtabless:
-            (nomEtabless != null ? nomEtabless.value : this.nomEtabless));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class EtageAfficheDto {
   const EtageAfficheDto({
     this.id,
@@ -12120,8 +11838,8 @@ class MagasinDto {
     this.proprietaire,
     this.idmmeuble,
     this.idChapitre,
-    this.occupied,
     this.underBuildingMagasin,
+    this.occupied,
   });
 
   factory MagasinDto.fromJson(Map<String, dynamic> json) =>
@@ -12164,10 +11882,10 @@ class MagasinDto {
   final int? idmmeuble;
   @JsonKey(name: 'idChapitre')
   final int? idChapitre;
-  @JsonKey(name: 'occupied')
-  final bool? occupied;
   @JsonKey(name: 'underBuildingMagasin')
   final bool? underBuildingMagasin;
+  @JsonKey(name: 'occupied')
+  final bool? occupied;
   static const fromJsonFactory = _$MagasinDtoFromJson;
 
   @override
@@ -12222,8 +11940,8 @@ class MagasinDto {
             (identical(other.idmmeuble, idmmeuble) ||
                 const DeepCollectionEquality().equals(other.idmmeuble, idmmeuble)) &&
             (identical(other.idChapitre, idChapitre) || const DeepCollectionEquality().equals(other.idChapitre, idChapitre)) &&
-            (identical(other.occupied, occupied) || const DeepCollectionEquality().equals(other.occupied, occupied)) &&
-            (identical(other.underBuildingMagasin, underBuildingMagasin) || const DeepCollectionEquality().equals(other.underBuildingMagasin, underBuildingMagasin)));
+            (identical(other.underBuildingMagasin, underBuildingMagasin) || const DeepCollectionEquality().equals(other.underBuildingMagasin, underBuildingMagasin)) &&
+            (identical(other.occupied, occupied) || const DeepCollectionEquality().equals(other.occupied, occupied)));
   }
 
   @override
@@ -12248,8 +11966,8 @@ class MagasinDto {
       const DeepCollectionEquality().hash(proprietaire) ^
       const DeepCollectionEquality().hash(idmmeuble) ^
       const DeepCollectionEquality().hash(idChapitre) ^
-      const DeepCollectionEquality().hash(occupied) ^
       const DeepCollectionEquality().hash(underBuildingMagasin) ^
+      const DeepCollectionEquality().hash(occupied) ^
       runtimeType.hashCode;
 }
 
@@ -12272,8 +11990,8 @@ extension $MagasinDtoExtension on MagasinDto {
       String? proprietaire,
       int? idmmeuble,
       int? idChapitre,
-      bool? occupied,
-      bool? underBuildingMagasin}) {
+      bool? underBuildingMagasin,
+      bool? occupied}) {
     return MagasinDto(
         id: id ?? this.id,
         idAgence: idAgence ?? this.idAgence,
@@ -12295,9 +12013,8 @@ extension $MagasinDtoExtension on MagasinDto {
         proprietaire: proprietaire ?? this.proprietaire,
         idmmeuble: idmmeuble ?? this.idmmeuble,
         idChapitre: idChapitre ?? this.idChapitre,
-        occupied: occupied ?? this.occupied,
-        underBuildingMagasin:
-            underBuildingMagasin ?? this.underBuildingMagasin);
+        underBuildingMagasin: underBuildingMagasin ?? this.underBuildingMagasin,
+        occupied: occupied ?? this.occupied);
   }
 
   MagasinDto copyWithWrapped(
@@ -12318,8 +12035,8 @@ extension $MagasinDtoExtension on MagasinDto {
       Wrapped<String?>? proprietaire,
       Wrapped<int?>? idmmeuble,
       Wrapped<int?>? idChapitre,
-      Wrapped<bool?>? occupied,
-      Wrapped<bool?>? underBuildingMagasin}) {
+      Wrapped<bool?>? underBuildingMagasin,
+      Wrapped<bool?>? occupied}) {
     return MagasinDto(
         id: (id != null ? id.value : this.id),
         idAgence: (idAgence != null ? idAgence.value : this.idAgence),
@@ -12353,10 +12070,10 @@ extension $MagasinDtoExtension on MagasinDto {
             (proprietaire != null ? proprietaire.value : this.proprietaire),
         idmmeuble: (idmmeuble != null ? idmmeuble.value : this.idmmeuble),
         idChapitre: (idChapitre != null ? idChapitre.value : this.idChapitre),
-        occupied: (occupied != null ? occupied.value : this.occupied),
         underBuildingMagasin: (underBuildingMagasin != null
             ? underBuildingMagasin.value
-            : this.underBuildingMagasin));
+            : this.underBuildingMagasin),
+        occupied: (occupied != null ? occupied.value : this.occupied));
   }
 }
 
@@ -12375,8 +12092,8 @@ class MagasinResponseDto {
     this.superficieBien,
     this.bienMeublerResidence,
     this.proprietaire,
-    this.occupied,
     this.underBuildingMagasin,
+    this.occupied,
   });
 
   factory MagasinResponseDto.fromJson(Map<String, dynamic> json) =>
@@ -12409,10 +12126,10 @@ class MagasinResponseDto {
   final bool? bienMeublerResidence;
   @JsonKey(name: 'proprietaire')
   final String? proprietaire;
-  @JsonKey(name: 'occupied')
-  final bool? occupied;
   @JsonKey(name: 'underBuildingMagasin')
   final bool? underBuildingMagasin;
+  @JsonKey(name: 'occupied')
+  final bool? occupied;
   static const fromJsonFactory = _$MagasinResponseDtoFromJson;
 
   @override
@@ -12457,12 +12174,11 @@ class MagasinResponseDto {
             (identical(other.proprietaire, proprietaire) ||
                 const DeepCollectionEquality()
                     .equals(other.proprietaire, proprietaire)) &&
-            (identical(other.occupied, occupied) ||
-                const DeepCollectionEquality()
-                    .equals(other.occupied, occupied)) &&
             (identical(other.underBuildingMagasin, underBuildingMagasin) ||
-                const DeepCollectionEquality()
-                    .equals(other.underBuildingMagasin, underBuildingMagasin)));
+                const DeepCollectionEquality().equals(
+                    other.underBuildingMagasin, underBuildingMagasin)) &&
+            (identical(other.occupied, occupied) ||
+                const DeepCollectionEquality().equals(other.occupied, occupied)));
   }
 
   @override
@@ -12482,8 +12198,8 @@ class MagasinResponseDto {
       const DeepCollectionEquality().hash(superficieBien) ^
       const DeepCollectionEquality().hash(bienMeublerResidence) ^
       const DeepCollectionEquality().hash(proprietaire) ^
-      const DeepCollectionEquality().hash(occupied) ^
       const DeepCollectionEquality().hash(underBuildingMagasin) ^
+      const DeepCollectionEquality().hash(occupied) ^
       runtimeType.hashCode;
 }
 
@@ -12501,8 +12217,8 @@ extension $MagasinResponseDtoExtension on MagasinResponseDto {
       double? superficieBien,
       bool? bienMeublerResidence,
       String? proprietaire,
-      bool? occupied,
-      bool? underBuildingMagasin}) {
+      bool? underBuildingMagasin,
+      bool? occupied}) {
     return MagasinResponseDto(
         id: id ?? this.id,
         idAgence: idAgence ?? this.idAgence,
@@ -12519,9 +12235,8 @@ extension $MagasinResponseDtoExtension on MagasinResponseDto {
         superficieBien: superficieBien ?? this.superficieBien,
         bienMeublerResidence: bienMeublerResidence ?? this.bienMeublerResidence,
         proprietaire: proprietaire ?? this.proprietaire,
-        occupied: occupied ?? this.occupied,
-        underBuildingMagasin:
-            underBuildingMagasin ?? this.underBuildingMagasin);
+        underBuildingMagasin: underBuildingMagasin ?? this.underBuildingMagasin,
+        occupied: occupied ?? this.occupied);
   }
 
   MagasinResponseDto copyWithWrapped(
@@ -12537,8 +12252,8 @@ extension $MagasinResponseDtoExtension on MagasinResponseDto {
       Wrapped<double?>? superficieBien,
       Wrapped<bool?>? bienMeublerResidence,
       Wrapped<String?>? proprietaire,
-      Wrapped<bool?>? occupied,
-      Wrapped<bool?>? underBuildingMagasin}) {
+      Wrapped<bool?>? underBuildingMagasin,
+      Wrapped<bool?>? occupied}) {
     return MagasinResponseDto(
         id: (id != null ? id.value : this.id),
         idAgence: (idAgence != null ? idAgence.value : this.idAgence),
@@ -12566,10 +12281,10 @@ extension $MagasinResponseDtoExtension on MagasinResponseDto {
             : this.bienMeublerResidence),
         proprietaire:
             (proprietaire != null ? proprietaire.value : this.proprietaire),
-        occupied: (occupied != null ? occupied.value : this.occupied),
         underBuildingMagasin: (underBuildingMagasin != null
             ? underBuildingMagasin.value
-            : this.underBuildingMagasin));
+            : this.underBuildingMagasin),
+        occupied: (occupied != null ? occupied.value : this.occupied));
   }
 }
 
@@ -16336,196 +16051,6 @@ extension $StatistiquePeriodeDtoExtension on StatistiquePeriodeDto {
 }
 
 @JsonSerializable(explicitToJson: true)
-class SuivieDepense {
-  const SuivieDepense({
-    this.id,
-    this.idAgence,
-    this.idCreateur,
-    this.creationDate,
-    this.lastModifiedDate,
-    this.dateEncaissement,
-    this.designation,
-    this.codeTransaction,
-    this.montantDepense,
-    this.modePaiement,
-    this.operationType,
-    this.chapitreSuivis,
-  });
-
-  factory SuivieDepense.fromJson(Map<String, dynamic> json) =>
-      _$SuivieDepenseFromJson(json);
-
-  static const toJsonFactory = _$SuivieDepenseToJson;
-  Map<String, dynamic> toJson() => _$SuivieDepenseToJson(this);
-
-  @JsonKey(name: 'id')
-  final int? id;
-  @JsonKey(name: 'idAgence')
-  final int? idAgence;
-  @JsonKey(name: 'idCreateur')
-  final int? idCreateur;
-  @JsonKey(name: 'creationDate')
-  final int? creationDate;
-  @JsonKey(name: 'lastModifiedDate')
-  final int? lastModifiedDate;
-  @JsonKey(name: 'dateEncaissement', toJson: _dateToJson)
-  final DateTime? dateEncaissement;
-  @JsonKey(name: 'designation')
-  final String? designation;
-  @JsonKey(name: 'codeTransaction')
-  final String? codeTransaction;
-  @JsonKey(name: 'montantDepense')
-  final double? montantDepense;
-  @JsonKey(
-    name: 'modePaiement',
-    toJson: suivieDepenseModePaiementNullableToJson,
-    fromJson: suivieDepenseModePaiementNullableFromJson,
-  )
-  final enums.SuivieDepenseModePaiement? modePaiement;
-  @JsonKey(
-    name: 'operationType',
-    toJson: suivieDepenseOperationTypeNullableToJson,
-    fromJson: suivieDepenseOperationTypeNullableFromJson,
-  )
-  final enums.SuivieDepenseOperationType? operationType;
-  @JsonKey(name: 'chapitreSuivis')
-  final Chapitre? chapitreSuivis;
-  static const fromJsonFactory = _$SuivieDepenseFromJson;
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is SuivieDepense &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
-            (identical(other.idAgence, idAgence) ||
-                const DeepCollectionEquality()
-                    .equals(other.idAgence, idAgence)) &&
-            (identical(other.idCreateur, idCreateur) ||
-                const DeepCollectionEquality()
-                    .equals(other.idCreateur, idCreateur)) &&
-            (identical(other.creationDate, creationDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.creationDate, creationDate)) &&
-            (identical(other.lastModifiedDate, lastModifiedDate) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastModifiedDate, lastModifiedDate)) &&
-            (identical(other.dateEncaissement, dateEncaissement) ||
-                const DeepCollectionEquality()
-                    .equals(other.dateEncaissement, dateEncaissement)) &&
-            (identical(other.designation, designation) ||
-                const DeepCollectionEquality()
-                    .equals(other.designation, designation)) &&
-            (identical(other.codeTransaction, codeTransaction) ||
-                const DeepCollectionEquality()
-                    .equals(other.codeTransaction, codeTransaction)) &&
-            (identical(other.montantDepense, montantDepense) ||
-                const DeepCollectionEquality()
-                    .equals(other.montantDepense, montantDepense)) &&
-            (identical(other.modePaiement, modePaiement) ||
-                const DeepCollectionEquality()
-                    .equals(other.modePaiement, modePaiement)) &&
-            (identical(other.operationType, operationType) ||
-                const DeepCollectionEquality()
-                    .equals(other.operationType, operationType)) &&
-            (identical(other.chapitreSuivis, chapitreSuivis) ||
-                const DeepCollectionEquality()
-                    .equals(other.chapitreSuivis, chapitreSuivis)));
-  }
-
-  @override
-  String toString() => jsonEncode(this);
-
-  @override
-  int get hashCode =>
-      const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(idAgence) ^
-      const DeepCollectionEquality().hash(idCreateur) ^
-      const DeepCollectionEquality().hash(creationDate) ^
-      const DeepCollectionEquality().hash(lastModifiedDate) ^
-      const DeepCollectionEquality().hash(dateEncaissement) ^
-      const DeepCollectionEquality().hash(designation) ^
-      const DeepCollectionEquality().hash(codeTransaction) ^
-      const DeepCollectionEquality().hash(montantDepense) ^
-      const DeepCollectionEquality().hash(modePaiement) ^
-      const DeepCollectionEquality().hash(operationType) ^
-      const DeepCollectionEquality().hash(chapitreSuivis) ^
-      runtimeType.hashCode;
-}
-
-extension $SuivieDepenseExtension on SuivieDepense {
-  SuivieDepense copyWith(
-      {int? id,
-      int? idAgence,
-      int? idCreateur,
-      int? creationDate,
-      int? lastModifiedDate,
-      DateTime? dateEncaissement,
-      String? designation,
-      String? codeTransaction,
-      double? montantDepense,
-      enums.SuivieDepenseModePaiement? modePaiement,
-      enums.SuivieDepenseOperationType? operationType,
-      Chapitre? chapitreSuivis}) {
-    return SuivieDepense(
-        id: id ?? this.id,
-        idAgence: idAgence ?? this.idAgence,
-        idCreateur: idCreateur ?? this.idCreateur,
-        creationDate: creationDate ?? this.creationDate,
-        lastModifiedDate: lastModifiedDate ?? this.lastModifiedDate,
-        dateEncaissement: dateEncaissement ?? this.dateEncaissement,
-        designation: designation ?? this.designation,
-        codeTransaction: codeTransaction ?? this.codeTransaction,
-        montantDepense: montantDepense ?? this.montantDepense,
-        modePaiement: modePaiement ?? this.modePaiement,
-        operationType: operationType ?? this.operationType,
-        chapitreSuivis: chapitreSuivis ?? this.chapitreSuivis);
-  }
-
-  SuivieDepense copyWithWrapped(
-      {Wrapped<int?>? id,
-      Wrapped<int?>? idAgence,
-      Wrapped<int?>? idCreateur,
-      Wrapped<int?>? creationDate,
-      Wrapped<int?>? lastModifiedDate,
-      Wrapped<DateTime?>? dateEncaissement,
-      Wrapped<String?>? designation,
-      Wrapped<String?>? codeTransaction,
-      Wrapped<double?>? montantDepense,
-      Wrapped<enums.SuivieDepenseModePaiement?>? modePaiement,
-      Wrapped<enums.SuivieDepenseOperationType?>? operationType,
-      Wrapped<Chapitre?>? chapitreSuivis}) {
-    return SuivieDepense(
-        id: (id != null ? id.value : this.id),
-        idAgence: (idAgence != null ? idAgence.value : this.idAgence),
-        idCreateur: (idCreateur != null ? idCreateur.value : this.idCreateur),
-        creationDate:
-            (creationDate != null ? creationDate.value : this.creationDate),
-        lastModifiedDate: (lastModifiedDate != null
-            ? lastModifiedDate.value
-            : this.lastModifiedDate),
-        dateEncaissement: (dateEncaissement != null
-            ? dateEncaissement.value
-            : this.dateEncaissement),
-        designation:
-            (designation != null ? designation.value : this.designation),
-        codeTransaction: (codeTransaction != null
-            ? codeTransaction.value
-            : this.codeTransaction),
-        montantDepense: (montantDepense != null
-            ? montantDepense.value
-            : this.montantDepense),
-        modePaiement:
-            (modePaiement != null ? modePaiement.value : this.modePaiement),
-        operationType:
-            (operationType != null ? operationType.value : this.operationType),
-        chapitreSuivis: (chapitreSuivis != null
-            ? chapitreSuivis.value
-            : this.chapitreSuivis));
-  }
-}
-
-@JsonSerializable(explicitToJson: true)
 class SuivieDepenseDto {
   const SuivieDepenseDto({
     this.id,
@@ -19053,152 +18578,6 @@ List<enums.EncaissementReservationDtoEntiteOperation>?
   return encaissementReservationDtoEntiteOperation
       .map((e) =>
           encaissementReservationDtoEntiteOperationFromJson(e.toString()))
-      .toList();
-}
-
-String? suivieDepenseModePaiementNullableToJson(
-    enums.SuivieDepenseModePaiement? suivieDepenseModePaiement) {
-  return suivieDepenseModePaiement?.value;
-}
-
-String? suivieDepenseModePaiementToJson(
-    enums.SuivieDepenseModePaiement suivieDepenseModePaiement) {
-  return suivieDepenseModePaiement.value;
-}
-
-enums.SuivieDepenseModePaiement suivieDepenseModePaiementFromJson(
-  Object? suivieDepenseModePaiement, [
-  enums.SuivieDepenseModePaiement? defaultValue,
-]) {
-  return enums.SuivieDepenseModePaiement.values
-          .firstWhereOrNull((e) => e.value == suivieDepenseModePaiement) ??
-      defaultValue ??
-      enums.SuivieDepenseModePaiement.swaggerGeneratedUnknown;
-}
-
-enums.SuivieDepenseModePaiement? suivieDepenseModePaiementNullableFromJson(
-  Object? suivieDepenseModePaiement, [
-  enums.SuivieDepenseModePaiement? defaultValue,
-]) {
-  if (suivieDepenseModePaiement == null) {
-    return null;
-  }
-  return enums.SuivieDepenseModePaiement.values
-          .firstWhereOrNull((e) => e.value == suivieDepenseModePaiement) ??
-      defaultValue;
-}
-
-String suivieDepenseModePaiementExplodedListToJson(
-    List<enums.SuivieDepenseModePaiement>? suivieDepenseModePaiement) {
-  return suivieDepenseModePaiement?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> suivieDepenseModePaiementListToJson(
-    List<enums.SuivieDepenseModePaiement>? suivieDepenseModePaiement) {
-  if (suivieDepenseModePaiement == null) {
-    return [];
-  }
-
-  return suivieDepenseModePaiement.map((e) => e.value!).toList();
-}
-
-List<enums.SuivieDepenseModePaiement> suivieDepenseModePaiementListFromJson(
-  List? suivieDepenseModePaiement, [
-  List<enums.SuivieDepenseModePaiement>? defaultValue,
-]) {
-  if (suivieDepenseModePaiement == null) {
-    return defaultValue ?? [];
-  }
-
-  return suivieDepenseModePaiement
-      .map((e) => suivieDepenseModePaiementFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.SuivieDepenseModePaiement>?
-    suivieDepenseModePaiementNullableListFromJson(
-  List? suivieDepenseModePaiement, [
-  List<enums.SuivieDepenseModePaiement>? defaultValue,
-]) {
-  if (suivieDepenseModePaiement == null) {
-    return defaultValue;
-  }
-
-  return suivieDepenseModePaiement
-      .map((e) => suivieDepenseModePaiementFromJson(e.toString()))
-      .toList();
-}
-
-String? suivieDepenseOperationTypeNullableToJson(
-    enums.SuivieDepenseOperationType? suivieDepenseOperationType) {
-  return suivieDepenseOperationType?.value;
-}
-
-String? suivieDepenseOperationTypeToJson(
-    enums.SuivieDepenseOperationType suivieDepenseOperationType) {
-  return suivieDepenseOperationType.value;
-}
-
-enums.SuivieDepenseOperationType suivieDepenseOperationTypeFromJson(
-  Object? suivieDepenseOperationType, [
-  enums.SuivieDepenseOperationType? defaultValue,
-]) {
-  return enums.SuivieDepenseOperationType.values
-          .firstWhereOrNull((e) => e.value == suivieDepenseOperationType) ??
-      defaultValue ??
-      enums.SuivieDepenseOperationType.swaggerGeneratedUnknown;
-}
-
-enums.SuivieDepenseOperationType? suivieDepenseOperationTypeNullableFromJson(
-  Object? suivieDepenseOperationType, [
-  enums.SuivieDepenseOperationType? defaultValue,
-]) {
-  if (suivieDepenseOperationType == null) {
-    return null;
-  }
-  return enums.SuivieDepenseOperationType.values
-          .firstWhereOrNull((e) => e.value == suivieDepenseOperationType) ??
-      defaultValue;
-}
-
-String suivieDepenseOperationTypeExplodedListToJson(
-    List<enums.SuivieDepenseOperationType>? suivieDepenseOperationType) {
-  return suivieDepenseOperationType?.map((e) => e.value!).join(',') ?? '';
-}
-
-List<String> suivieDepenseOperationTypeListToJson(
-    List<enums.SuivieDepenseOperationType>? suivieDepenseOperationType) {
-  if (suivieDepenseOperationType == null) {
-    return [];
-  }
-
-  return suivieDepenseOperationType.map((e) => e.value!).toList();
-}
-
-List<enums.SuivieDepenseOperationType> suivieDepenseOperationTypeListFromJson(
-  List? suivieDepenseOperationType, [
-  List<enums.SuivieDepenseOperationType>? defaultValue,
-]) {
-  if (suivieDepenseOperationType == null) {
-    return defaultValue ?? [];
-  }
-
-  return suivieDepenseOperationType
-      .map((e) => suivieDepenseOperationTypeFromJson(e.toString()))
-      .toList();
-}
-
-List<enums.SuivieDepenseOperationType>?
-    suivieDepenseOperationTypeNullableListFromJson(
-  List? suivieDepenseOperationType, [
-  List<enums.SuivieDepenseOperationType>? defaultValue,
-]) {
-  if (suivieDepenseOperationType == null) {
-    return defaultValue;
-  }
-
-  return suivieDepenseOperationType
-      .map((e) => suivieDepenseOperationTypeFromJson(e.toString()))
       .toList();
 }
 
